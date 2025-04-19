@@ -10,7 +10,8 @@ from src.utils.visualization import (
     plot_remote_adaptive_support,
     display_recommendation_details,
     add_search_method_explanation,
-    plot_duration_distribution
+    plot_duration_distribution,
+    deduplicate_recommendations
 )
 from src.utils.benchmark import get_sample_benchmark_queries, run_benchmark
 from src.utils.api_utils import format_api_response, health_check, validate_query_params
@@ -69,7 +70,7 @@ st.markdown("""
 @st.cache_data(ttl=3600)  # cache for 1 hour
 def load_assessment_data():
     try:
-        df = pd.read_csv('src/data/shl_full_catalog.csv')
+        df = pd.read_csv('src/data/shl_full_catalog_with_duration.csv')
         return df
     except Exception as e:
         st.error(f"Error loading assessment data: {str(e)}")
@@ -130,7 +131,7 @@ def main():
         return
     
     # Initialize model
-    model = initialize_model('src/data/shl_full_catalog.csv')
+    model = initialize_model('src/data/shl_full_catalog_with_duration.csv')
     if model is None:
         st.error("Failed to initialize recommendation model. Please check the logs.")
         return
@@ -233,6 +234,9 @@ def main():
                 end_time = time.time()
                 
                 if recommendations:
+                    # Deduplicate recommendations first
+                    recommendations = deduplicate_recommendations(recommendations)
+                    
                     # Apply advanced filters if set
                     filtered_recommendations = recommendations
                     

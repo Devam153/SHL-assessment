@@ -1,10 +1,46 @@
-
 """
 Visualization utilities for catalog analysis
 """
-import pandas as pd
+import pandas as pd 
 import streamlit as st
 import plotly.express as px
+import re
+from collections import Counter
+
+def clean_duration(duration_str: str) -> int | None:
+    """
+    Clean duration string and convert to integer minutes.
+    Returns None if duration is not a valid number.
+    """
+    if not isinstance(duration_str, str):
+        return None
+        
+    # Remove 'min' and whitespace
+    duration = duration_str.lower().replace('min', '').strip()
+    
+    # Handle ranges like "35-40" - take the average
+    if '-' in duration:
+        try:
+            low, high = map(int, duration.split('-'))
+            return (low + high) // 2
+        except:
+            return None
+            
+    # Handle 'max' prefixed durations
+    if 'max' in duration:
+        try:
+            # Extract the number after 'max'
+            max_value = re.findall(r'max\s*(\d+)', duration)
+            if max_value:
+                return int(max_value[0])
+        except:
+            pass
+            
+    # Try to extract just numbers
+    try:
+        return int(re.findall(r'\d+', duration)[0])
+    except:
+        return None
 
 def plot_test_type_distribution(df: pd.DataFrame) -> None:
     """
@@ -55,51 +91,84 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
 
 def plot_duration_distribution(df: pd.DataFrame) -> None:
     """
-    Visualize the distribution of test durations
+    Visualize the distribution of test durations, excluding non-numeric values
     """
-    # Determine which column name to use for duration
-    duration_col = None
-    if 'Duration' in df.columns:
-        duration_col = 'Duration'
-    elif 'duration' in df.columns:
-        duration_col = 'duration'
-    
-    if duration_col is None:
-        st.info("Duration column not found in dataset. Skipping duration distribution analysis.")
+    if 'Duration' not in df.columns:
+        st.warning("Duration column not found in dataset")
         return
         
-    # Extract duration values
+    # Clean and convert durations
     durations = []
+    invalid_durations = []
+    special_values = {}
     
-    for duration in df[duration_col]:
-        if isinstance(duration, str):
-            # Handle ranges like "35-40 min"
-            parts = duration.replace('min', '').strip().split('-')
-            try:
-                # Take the first number if range, or the only number
-                duration_value = int(parts[0])
-                durations.append(duration_value)
-            except ValueError:
-                pass
+    for duration in df['Duration']:
+        if pd.isna(duration):
+            continue
+            
+        str_duration = str(duration)
+        cleaned_duration = clean_duration(str_duration)
+        
+        if cleaned_duration is not None:
+            durations.append(cleaned_duration)
+        else:
+            # Collect special duration values for reporting
+            special_value = str_duration.strip().lower()
+            if special_value:
+                special_values[special_value] = special_values.get(special_value, 0) + 1
+                invalid_durations.append(str_duration)
     
     if not durations:
-        st.warning("No valid duration data found in dataset.")
+        st.warning("No valid duration data found in dataset")
         return
         
+    # Create histogram for duration distribution
     fig = px.histogram(
         x=durations,
-        nbins=10,
-        title='Distribution of Assessment Durations',
-        labels={'x': 'Duration (minutes)', 'y': 'Count'},
+        nbins=12,
+        title='Distribution of Assessment Durations (Minutes)',
+        labels={'x': 'Duration (minutes)', 'y': 'Number of Assessments'},
         color_discrete_sequence=['#36A2EB']
     )
     
     fig.update_layout(
         xaxis_title='Duration (minutes)',
         yaxis_title='Number of Assessments',
+        bargap=0.2
     )
     
+    # Add mean and median lines
+    mean_duration = sum(durations) / len(durations)
+    median_duration = sorted(durations)[len(durations)//2]
+    
+    fig.add_vline(x=mean_duration, line_dash="dash", line_color="red",
+                  annotation_text=f"Mean: {mean_duration:.1f} min")
+    fig.add_vline(x=median_duration, line_dash="dash", line_color="green",
+                  annotation_text=f"Median: {median_duration:.1f} min")
+    
     st.plotly_chart(fig, use_container_width=True)
+    
+    # Display statistics
+    st.markdown("### Duration Statistics")
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.metric("Average Duration", f"{mean_duration:.1f} min")
+    with col2:
+        st.metric("Median Duration", f"{median_duration:.1f} min")
+    with col3:
+        st.metric("Total Valid Samples", str(len(durations)))
+        
+    # Display non-numeric durations in a more organized way
+    if invalid_durations:
+        st.markdown("### Non-numeric Durations")
+        
+        # Count and display by category
+        special_durations_count = Counter(special_values)
+        special_durations_list = [f"{value} ({count})" for value, count in special_durations_count.most_common()]
+        
+        st.markdown("The following duration values were excluded from the analysis:")
+        st.write(", ".join(special_durations_list))
 
 def plot_remote_adaptive_support(df: pd.DataFrame) -> None:
     """
