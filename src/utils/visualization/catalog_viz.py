@@ -193,12 +193,10 @@ def plot_remote_adaptive_support(df: pd.DataFrame) -> None:
         return
     
     try:
-        # Remote Testing Support
         remote_count = df[remote_col].str.lower().eq('yes').sum()
         remote_data = {'Category': ['Supports Remote', 'No Remote Support'], 
                       'Count': [remote_count, len(df) - remote_count]}
         
-        # Adaptive/IRT Support
         adaptive_count = df[adaptive_col].str.lower().eq('yes').sum()
         adaptive_data = {'Category': ['Supports Adaptive', 'No Adaptive Support'], 
                         'Count': [adaptive_count, len(df) - adaptive_count]}

@@ -17,13 +17,11 @@ def calculate_mean_recall_at_k(predictions: List[List[str]], ground_truth: List[
     recall_values = []
     
     for i, (pred, truth) in enumerate(zip(predictions, ground_truth)):
-        if not truth:  # Skip queries with no relevant items
+        if not truth: 
             continue
             
-        # Consider only top-k predictions
         pred_k = pred[:k]
         
-        # Count relevant items in top-k predictions
         relevant_retrieved = 0
         
         logger.info(f"Query index {i}:")
