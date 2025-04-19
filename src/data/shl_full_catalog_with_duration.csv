@@ -1,0 +1,442 @@
+Test Name,Link,Remote Testing,Adaptive/IRT,Test Types,Duration
+Account Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/account-manager-solution/,Yes,Yes,"C, P, A, B",49 min
+Administrative Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/administrative-professional-short-form/,Yes,Yes,"A, K, P",36 min
+Agency Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/agency-manager-solution/,Yes,Yes,"A, B, P, S",51 min
+Apprentice + 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment-4261/,Yes,No,"B, P",30 min
+Apprentice 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment/,Yes,No,"B, P",20 min
+Bank Administrative Assistant - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-administrative-assistant-short-form/,Yes,No,"A, B, K, P",35 min
+Bank Collections Agent - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-collections-agent-short-form/,Yes,No,"A, B, P",45 min
+Bank Operations Supervisor - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-operations-supervisor-short-form/,Yes,Yes,"A, B, P, S",45 min
+Bilingual Spanish Reservation Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/bilingual-spanish-reservation-agent-solution/,Yes,Yes,"B, P, S, A",43 min
+"Bookkeeping, Accounting, Auditing Clerk Short Form",https://www.shl.com/solutions/products/product-catalog/view/bookkeeping-accounting-auditing-clerk-short-form/,Yes,Yes,"P, S, K, B, A",49 min
+Branch Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/branch-manager-short-form/,Yes,No,"A, B, P",50 min
+Cashier Solution,https://www.shl.com/solutions/products/product-catalog/view/cashier-solution/,Yes,Yes,"B, A, P",28 min
+Global Skills Development Report,https://www.shl.com/solutions/products/product-catalog/view/global-skills-development-report/,Yes,No,"A, E, B, C, D, P", 
+.NET Framework 4.5,https://www.shl.com/solutions/products/product-catalog/view/net-framework-4-5/,Yes,Yes,K,30 min
+.NET MVC (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvc-new/,Yes,No,K,17 min
+.NET MVVM (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvvm-new/,Yes,No,K,5 min
+.NET WCF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wcf-new/,Yes,No,K,11 min
+.NET WPF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wpf-new/,Yes,No,K,9 min
+.NET XAML (New),https://www.shl.com/solutions/products/product-catalog/view/net-xaml-new/,Yes,No,K,5 min
+Accounts Payable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-new/,Yes,No,K,9 min
+Accounts Payable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-simulation-new/,Yes,No,S,8 min
+Accounts Receivable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-new/,Yes,No,K,13 min
+Accounts Receivable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-simulation-new/,Yes,No,S,8 min
+ADO.NET (New),https://www.shl.com/solutions/products/product-catalog/view/ado-net-new/,Yes,No,K,10 min
+Account Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/account-manager-solution/,Yes,Yes,"C, P, A, B",49 min
+Administrative Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/administrative-professional-short-form/,Yes,Yes,"A, K, P",36 min
+Agency Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/agency-manager-solution/,Yes,Yes,"A, B, P, S",51 min
+Apprentice + 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment-4261/,Yes,No,"B, P",30 min
+Apprentice 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment/,Yes,No,"B, P",20 min
+Bank Administrative Assistant - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-administrative-assistant-short-form/,Yes,No,"A, B, K, P",35 min
+Bank Collections Agent - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-collections-agent-short-form/,Yes,No,"A, B, P",45 min
+Bank Operations Supervisor - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-operations-supervisor-short-form/,Yes,Yes,"A, B, P, S",45 min
+Bilingual Spanish Reservation Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/bilingual-spanish-reservation-agent-solution/,Yes,Yes,"B, P, S, A",43 min
+"Bookkeeping, Accounting, Auditing Clerk Short Form",https://www.shl.com/solutions/products/product-catalog/view/bookkeeping-accounting-auditing-clerk-short-form/,Yes,Yes,"P, S, K, B, A",49 min
+Branch Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/branch-manager-short-form/,Yes,No,"A, B, P",50 min
+Cashier Solution,https://www.shl.com/solutions/products/product-catalog/view/cashier-solution/,Yes,Yes,"B, A, P",28 min
+Global Skills Development Report,https://www.shl.com/solutions/products/product-catalog/view/global-skills-development-report/,Yes,No,"A, E, B, C, D, P", 
+.NET Framework 4.5,https://www.shl.com/solutions/products/product-catalog/view/net-framework-4-5/,Yes,Yes,K,30 min
+.NET MVC (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvc-new/,Yes,No,K,17 min
+.NET MVVM (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvvm-new/,Yes,No,K,5 min
+.NET WCF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wcf-new/,Yes,No,K,11 min
+.NET WPF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wpf-new/,Yes,No,K,9 min
+.NET XAML (New),https://www.shl.com/solutions/products/product-catalog/view/net-xaml-new/,Yes,No,K,5 min
+Accounts Payable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-new/,Yes,No,K,9 min
+Accounts Payable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-simulation-new/,Yes,No,S,8 min
+Accounts Receivable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-new/,Yes,No,K,13 min
+Accounts Receivable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-simulation-new/,Yes,No,S,8 min
+ADO.NET (New),https://www.shl.com/solutions/products/product-catalog/view/ado-net-new/,Yes,No,K,10 min
+Teradata Development (New),https://www.shl.com/solutions/products/product-catalog/view/teradata-development-new/,Yes,No,K,9 min
+Time Management (U.S.),https://www.shl.com/solutions/products/product-catalog/view/time-management-u-s/,Yes,Yes,K,15 min
+Training Development,https://www.shl.com/solutions/products/product-catalog/view/training-development/,Yes,Yes,K,15 min
+Typing (New),https://www.shl.com/solutions/products/product-catalog/view/typing-new/,Yes,No,S,2 min
+UiPath RPA Development (New),https://www.shl.com/solutions/products/product-catalog/view/uipath-rpa-development-new/,Yes,No,K,8 min
+Universal Competency Framework Interview Guide,https://www.shl.com/solutions/products/product-catalog/view/universal-competency-framework-interview-guide/,Yes,No,"C, P", 
+Universal Competency Framework Job profiling guide,https://www.shl.com/solutions/products/product-catalog/view/universal-competency-framework-job-profiling-guide/,Yes,No,"C, P", "Untimed"
+Universal Competency Framework Profiler Cards (44),https://www.shl.com/solutions/products/product-catalog/view/universal-competency-framework-profiler-cards-44/,Yes,No,"C, P", "Untimed"
+UNIX (New),https://www.shl.com/solutions/products/product-catalog/view/unix-new/,Yes,No,K,9 min
+VB.NET (New),https://www.shl.com/solutions/products/product-catalog/view/vb-net-new/,Yes,No,K,10 min
+Verify - Deductive Reasoning,https://www.shl.com/solutions/products/product-catalog/view/verify-deductive-reasoning/,Yes,Yes,A,20 min
+Verify - Following Instructions,https://www.shl.com/solutions/products/product-catalog/view/verify-following-instructions/,Yes,No,A,8 min
+Account Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/account-manager-solution/,Yes,Yes,"C, P, A, B",49 min
+Administrative Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/administrative-professional-short-form/,Yes,Yes,"A, K, P",36 min
+Agency Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/agency-manager-solution/,Yes,Yes,"A, B, P, S",51 min
+Apprentice + 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment-4261/,Yes,No,"B, P",30 min
+Apprentice 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment/,Yes,No,"B, P",20 min
+Bank Administrative Assistant - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-administrative-assistant-short-form/,Yes,No,"A, B, K, P",35 min
+Bank Collections Agent - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-collections-agent-short-form/,Yes,No,"A, B, P",45 min
+Bank Operations Supervisor - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-operations-supervisor-short-form/,Yes,Yes,"A, B, P, S",45 min
+Bilingual Spanish Reservation Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/bilingual-spanish-reservation-agent-solution/,Yes,Yes,"B, P, S, A",43 min
+"Bookkeeping, Accounting, Auditing Clerk Short Form",https://www.shl.com/solutions/products/product-catalog/view/bookkeeping-accounting-auditing-clerk-short-form/,Yes,Yes,"P, S, K, B, A",49 min
+Branch Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/branch-manager-short-form/,Yes,No,"A, B, P",50 min
+Cashier Solution,https://www.shl.com/solutions/products/product-catalog/view/cashier-solution/,Yes,Yes,"B, A, P",28 min
+Global Skills Development Report,https://www.shl.com/solutions/products/product-catalog/view/global-skills-development-report/,Yes,No,"A, E, B, C, D, P",
+.NET Framework 4.5,https://www.shl.com/solutions/products/product-catalog/view/net-framework-4-5/,Yes,Yes,K,30 min
+.NET MVC (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvc-new/,Yes,No,K,17 min
+.NET MVVM (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvvm-new/,Yes,No,K,5 min
+.NET WCF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wcf-new/,Yes,No,K,11 min
+.NET WPF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wpf-new/,Yes,No,K,9 min
+.NET XAML (New),https://www.shl.com/solutions/products/product-catalog/view/net-xaml-new/,Yes,No,K,5 min
+Accounts Payable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-new/,Yes,No,K,9 min
+Accounts Payable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-simulation-new/,Yes,No,S,8 min
+Accounts Receivable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-new/,Yes,No,K,13 min
+Accounts Receivable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-simulation-new/,Yes,No,S,8 min
+ADO.NET (New),https://www.shl.com/solutions/products/product-catalog/view/ado-net-new/,Yes,No,K,10 min
+Claims/Operations Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/claimsoperations-supervisor-solution/,Yes,Yes,"P, S, A, B",48 min
+Contact Center Customer Service + 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-customer-service-8-0/,Yes,No,"A, B, C, P, S",41 min
+Contact Center Customer Service 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-customer-service-8-0-4269/,Yes,No,"S, B, C, P",31 min
+Contact Center Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/contact-center-manager-short-form/,Yes,Yes,"A, B, P, S",50 min
+Contact Center Sales & Service + 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-sales-and-service-8-0/,Yes,No,"P, B, C, A, S",41 min
+Contact Center Sales & Service 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-sales-and-service-8-0-4268/,Yes,No,"S, B, C, P",31 min
+Contact Center Team Lead/Coach - Short Form,https://www.shl.com/solutions/products/product-catalog/view/contact-center-team-leadcoach-short-form/,Yes,Yes,"A, B, P, S",45 min
+Contact Centre Agent Solution - UK,https://www.shl.com/solutions/products/product-catalog/view/contact-centre-agent-solution-uk/,Yes,No,"A, B, P, S",39 min
+Customer Service - Short Form,https://www.shl.com/solutions/products/product-catalog/view/customer-service-short-form/,Yes,Yes,"A, B, P",42 min
+Customer Service - Short Form - UK,https://www.shl.com/solutions/products/product-catalog/view/customer-service-short-form-uk/,Yes,Yes,"A, B, P",42 min
+Customer Service with Sales - Short Form,https://www.shl.com/solutions/products/product-catalog/view/customer-service-with-sales-short-form/,Yes,Yes,"A, B, P",44 min
+Director - Short Form,https://www.shl.com/solutions/products/product-catalog/view/director-short-form/,Yes,Yes,"A, B, P",69 min
+District/Regional Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/districtregional-manager-solution/,Yes,Yes,"A, B, P",65 min
+Entry Level Cashier 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-7-1-%28americas%29/,Yes,No,"B, P, A",18 min
+Entry Level Cashier 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-7-1-%28international%29/,Yes,No,"A, B, P",18 min
+Entry Level Customer Service 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-7-1-%28americas%29/,Yes,No,"C, P",19 min
+Entry Level Customer Service 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-%28retail-and-cc%29-7-1/,Yes,No,"C, P",19 min
+Entry Level Customer Service 7.1 (South Africa),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-7-1-%28south-africa%29/,Yes,No,"C, P",19 min
+Entry level Sales 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1-%28americas%29/,Yes,No,"B, C, P",20 min
+Entry level Sales 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1/,Yes,No,"P, B, C",20 min
+Entry Level Sales Sift Out 7.1,https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-sift-out-7-1/,Yes,No,"C, P, B",20 min
+Event Sales Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/event-sales-manager-solution/,Yes,Yes,"S, A, B, P",50 min
+Executive - Short Form,https://www.shl.com/solutions/products/product-catalog/view/executive-short-form/,Yes,Yes,"A, B, P",74 min
+Financial Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/financial-professional-short-form/,Yes,No,"A, B, P",35 min
+Adobe Experience Manager (New),https://www.shl.com/solutions/products/product-catalog/view/adobe-experience-manager-new/,Yes,No,K,17 min
+Adobe Photoshop CC,https://www.shl.com/solutions/products/product-catalog/view/adobe-photoshop-cc/,Yes,Yes,K,20 min
+Aeronautical Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/aeronautical-engineering-new/,Yes,No,K,10 min
+Aerospace Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/aerospace-engineering-new/,Yes,No,K,10 min
+Agile Software Development,https://www.shl.com/solutions/products/product-catalog/view/agile-software-development/,Yes,No,K,7 min
+Agile Testing (New),https://www.shl.com/solutions/products/product-catalog/view/agile-testing-new/,Yes,No,K,13 min
+AI Skills,https://www.shl.com/solutions/products/product-catalog/view/ai-skills/,Yes,No,P,16 min
+Amazon Web Services (AWS) Development (New),https://www.shl.com/solutions/products/product-catalog/view/amazon-web-services-aws-development-new/,Yes,No,K,6 min
+Android Development (New),https://www.shl.com/solutions/products/product-catalog/view/android-development-new/,Yes,No,K,7 min
+Angular 6 (New),https://www.shl.com/solutions/products/product-catalog/view/angular-6-new/,Yes,No,K,11 min
+AngularJS (New),https://www.shl.com/solutions/products/product-catalog/view/angularjs-new/,Yes,No,K,9 min
+Apache Hadoop (New),https://www.shl.com/solutions/products/product-catalog/view/apache-hadoop-new/,Yes,No,K,7 min
+Apache Hadoop Extensions (New),https://www.shl.com/solutions/products/product-catalog/view/apache-hadoop-extensions-new/,Yes,No,K,9 min
+Apache HBase (New),https://www.shl.com/solutions/products/product-catalog/view/apache-hbase-new/,Yes,No,K,5 min
+Apache Hive (New),https://www.shl.com/solutions/products/product-catalog/view/apache-hive-new/,Yes,No,K,5 min
+Apache Kafka (New),https://www.shl.com/solutions/products/product-catalog/view/apache-kafka-new/,Yes,No,K,6 min
+Apache Pig (New),https://www.shl.com/solutions/products/product-catalog/view/apache-pig-new/,Yes,No,K,6 min
+Apache Spark (New),https://www.shl.com/solutions/products/product-catalog/view/apache-spark-new/,Yes,No,K,8 min
+ASP .NET with C# (New),https://www.shl.com/solutions/products/product-catalog/view/asp-net-with-c-new/,Yes,No,K,13 min
+ASP.NET 4.5,https://www.shl.com/solutions/products/product-catalog/view/asp-net-4-5/,Yes,Yes,K,30 min
+Assessment and Development Center Exercises,https://www.shl.com/solutions/products/product-catalog/view/assessment-and-development-center-exercises/,Yes,No,E, "Variable"
+Automata - Fix (New),https://www.shl.com/solutions/products/product-catalog/view/automata-fix-new/,Yes,No,S, "max 20"
+Automata - SQL (New),https://www.shl.com/solutions/products/product-catalog/view/automata-sql-new/,Yes,No,S, "max 30"
+Automata (New),https://www.shl.com/solutions/products/product-catalog/view/automata-new/,Yes,No,S, "max 45"
+Automata Data Science (New),https://www.shl.com/solutions/products/product-catalog/view/automata-data-science-new/,Yes,No,S, "max 60"
+Automata Data Science Pro (New),https://www.shl.com/solutions/products/product-catalog/view/automata-data-science-pro-new/,Yes,No,S, "max 60"
+Automata Front End,https://www.shl.com/solutions/products/product-catalog/view/automata-front-end/,Yes,No,S,30 min
+Automata Pro (New),https://www.shl.com/solutions/products/product-catalog/view/automata-pro-new/,Yes,No,S, "max 60"
+Automata Selenium,https://www.shl.com/solutions/products/product-catalog/view/automata-selenium/,Yes,No,S,60 min
+Automation Anywhere RPA Development (New),https://www.shl.com/solutions/products/product-catalog/view/automation-anywhere-rpa-development-new/,Yes,No,K,8 min
+Automotive Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/automotive-engineering-new/,Yes,No,K,13 min
+Basic Biology (New),https://www.shl.com/solutions/products/product-catalog/view/basic-biology-new/,Yes,No,K,6 min
+Basic Computer Literacy (Windows 10) (New),https://www.shl.com/solutions/products/product-catalog/view/basic-computer-literacy-windows-10-new/,Yes,No,"S, K",30 min
+Basic Statistics (New),https://www.shl.com/solutions/products/product-catalog/view/basic-statistics-new/,Yes,No,K,10 min
+Biochemistry (New),https://www.shl.com/solutions/products/product-catalog/view/biochemistry-new/,Yes,No,K,8 min
+Biotech Lab Techniques (New),https://www.shl.com/solutions/products/product-catalog/view/biotech-lab-techniques-new/,Yes,No,K,5 min
+BizTalk (New),https://www.shl.com/solutions/products/product-catalog/view/biztalk-new/,Yes,No,K,16 min
+Business Communication (adaptive),https://www.shl.com/solutions/products/product-catalog/view/business-communication-adaptive/,Yes,Yes,K,24 min
+Business Communications,https://www.shl.com/solutions/products/product-catalog/view/business-communications/,Yes,No,K,35 min
+C Programming (New),https://www.shl.com/solutions/products/product-catalog/view/c-programming-new/,Yes,No,K,10 min
+C# Programming (New),https://www.shl.com/solutions/products/product-catalog/view/c-programming-new-4039/,Yes,No,K,9 min
+C++ Programming (New),https://www.shl.com/solutions/products/product-catalog/view/c-programming-new-4122/,Yes,No,K,10 min
+Cardiology and Diabetes Management (New),https://www.shl.com/solutions/products/product-catalog/view/cardiology-and-diabetes-management-new/,Yes,No,K,4 min
+Ceramic Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/ceramic-engineering-new/,Yes,No,K,12 min
+Chemical Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/chemical-engineering-new/,Yes,No,K,13 min
+Cisco AppDynamics (New),https://www.shl.com/solutions/products/product-catalog/view/cisco-appdynamics-new/,Yes,No,K,9 min
+Civil Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/civil-engineering-new/,Yes,No,K,10 min
+Cloud Computing (New),https://www.shl.com/solutions/products/product-catalog/view/cloud-computing-new/,Yes,No,K,8 min
+COBOL Programming (New),https://www.shl.com/solutions/products/product-catalog/view/cobol-programming-new/,Yes,No,K,10 min
+Computer Science (New),https://www.shl.com/solutions/products/product-catalog/view/computer-science-new/,Yes,No,K,12 min
+Contact Center Call Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/contact-center-call-simulation-new/,Yes,No,S,15 min
+Conversational Multichat Simulation,https://www.shl.com/solutions/products/product-catalog/view/conversational-multichat-simulation/,Yes,No,S,11 min
+Core Java (Advanced Level) (New),https://www.shl.com/solutions/products/product-catalog/view/core-java-advanced-level-new/,Yes,No,K,13 min
+Core Java (Entry Level) (New),https://www.shl.com/solutions/products/product-catalog/view/core-java-entry-level-new/,Yes,No,K,13 min
+Count Out The Money,https://www.shl.com/solutions/products/product-catalog/view/count-out-the-money/,Yes,Yes,"K, S",5 min
+CSS3 (New),https://www.shl.com/solutions/products/product-catalog/view/css3-new/,Yes,No,K,8 min
+Culinary Skills (New),https://www.shl.com/solutions/products/product-catalog/view/culinary-skills-new/,Yes,No,K,7 min
+Customer Service Phone Simulation,https://www.shl.com/solutions/products/product-catalog/view/customer-service-phone-simulation/,Yes,No,"B, S",20 min
+Customer Service Phone Solution,https://www.shl.com/solutions/products/product-catalog/view/customer-service-phone-solution/,Yes,No,"B, P, S",30 min
+Cyber Risk (New),https://www.shl.com/solutions/products/product-catalog/view/cyber-risk-new/,Yes,No,K,9 min
+Data Entry (New),https://www.shl.com/solutions/products/product-catalog/view/data-entry-new/,Yes,No,S,4 min
+Data Entry Alphanumeric Split Screen - US,https://www.shl.com/solutions/products/product-catalog/view/data-entry-alphanumeric-split-screen-us/,Yes,No,K,5 min
+Data Entry Numeric Split Screen - US,https://www.shl.com/solutions/products/product-catalog/view/data-entry-numeric-split-screen-us/,Yes,No,K,5 min
+Data Entry Ten Key Split Screen,https://www.shl.com/solutions/products/product-catalog/view/data-entry-ten-key-split-screen/,Yes,No,K,3 min
+Data Science (New),https://www.shl.com/solutions/products/product-catalog/view/data-science-new/,Yes,No,K,14 min
+Data Warehousing Concepts,https://www.shl.com/solutions/products/product-catalog/view/data-warehousing-concepts/,Yes,Yes,K,25 min
+Dependability and Safety Instrument (DSI),https://www.shl.com/solutions/products/product-catalog/view/dependability-and-safety-instrument-dsi/,Yes,No,P,10 min
+Dermatology (New),https://www.shl.com/solutions/products/product-catalog/view/dermatology-new/,Yes,No,K,3 min
+Desktop Support (New),https://www.shl.com/solutions/products/product-catalog/view/desktop-support-new/,Yes,No,K,8 min
+Digital Advertising (New),https://www.shl.com/solutions/products/product-catalog/view/digital-advertising-new/,Yes,No,K,7 min
+Digital Readiness Development Report - IC,https://www.shl.com/solutions/products/product-catalog/view/digital-readiness-development-report/,Yes,No,P,
+Digital Readiness Development Report - Manager,https://www.shl.com/solutions/products/product-catalog/view/digital-readiness-development-report-manager/,Yes,No,P,
+Data Entry (New),https://www.shl.com/solutions/products/product-catalog/view/data-entry-new/,Yes,No,S,4 min
+Data Entry Alphanumeric Split Screen - US,https://www.shl.com/solutions/products/product-catalog/view/data-entry-alphanumeric-split-screen-us/,Yes,No,K,5 min
+Data Entry Numeric Split Screen - US,https://www.shl.com/solutions/products/product-catalog/view/data-entry-numeric-split-screen-us/,Yes,No,K,5 min
+Data Entry Ten Key Split Screen,https://www.shl.com/solutions/products/product-catalog/view/data-entry-ten-key-split-screen/,Yes,No,K,3 min
+Data Science (New),https://www.shl.com/solutions/products/product-catalog/view/data-science-new/,Yes,No,K,14 min
+Data Warehousing Concepts,https://www.shl.com/solutions/products/product-catalog/view/data-warehousing-concepts/,Yes,Yes,K,25 min
+Dependability and Safety Instrument (DSI),https://www.shl.com/solutions/products/product-catalog/view/dependability-and-safety-instrument-dsi/,Yes,No,P,10 min
+Dermatology (New),https://www.shl.com/solutions/products/product-catalog/view/dermatology-new/,Yes,No,K,3 min
+Desktop Support (New),https://www.shl.com/solutions/products/product-catalog/view/desktop-support-new/,Yes,No,K,8 min
+Digital Advertising (New),https://www.shl.com/solutions/products/product-catalog/view/digital-advertising-new/,Yes,No,K,7 min
+Digital Readiness Development Report - IC,https://www.shl.com/solutions/products/product-catalog/view/digital-readiness-development-report/,Yes,No,P,
+Digital Readiness Development Report - Manager,https://www.shl.com/solutions/products/product-catalog/view/digital-readiness-development-report-manager/,Yes,No,P,
+Docker (New),https://www.shl.com/solutions/products/product-catalog/view/docker-new/,Yes,No,K,10 min
+Dojo (New),https://www.shl.com/solutions/products/product-catalog/view/dojo-new/,Yes,No,K,11 min
+Drupal (New),https://www.shl.com/solutions/products/product-catalog/view/drupal-new/,Yes,No,K,17 min
+DSI v1.1 Interpretation Report,https://www.shl.com/solutions/products/product-catalog/view/dsi-v1-1-interpretation-report/,Yes,No,P,
+Econometrics (New),https://www.shl.com/solutions/products/product-catalog/view/econometrics-new/,Yes,No,K,11 min
+Economics (New),https://www.shl.com/solutions/products/product-catalog/view/economics-new/,Yes,No,K,13 min
+Electrical and Electronics Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/electrical-and-electronics-engineering-new/,Yes,No,K,14 min
+Electrical Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/electrical-engineering-new/,Yes,No,K,8 min
+Electronics & Telecommunications Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/electronics-and-telecommunications-engineering-new/,Yes,No,K,15 min
+Electronics and Embedded Systems Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/electronics-and-embedded-systems-engineering-new/,Yes,No,K,18 min
+Electronics and Semiconductor Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/electronics-and-semiconductor-engineering-new/,Yes,No,K,7 min
+English Comprehension (New),https://www.shl.com/solutions/products/product-catalog/view/english-comprehension-new/,Yes,No,K,0 min
+Enterprise Java Beans (New),https://www.shl.com/solutions/products/product-catalog/view/enterprise-java-beans-new/,Yes,No,K,4 min
+Enterprise Leadership Report 1.0,https://www.shl.com/solutions/products/product-catalog/view/enterprise-leadership-report/,Yes,No,P,
+Enterprise Leadership Report 2.0,https://www.shl.com/solutions/products/product-catalog/view/enterprise-leadership-report-2-0/,Yes,No,P,
+Entry Level Cashier Solution,https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-solution/,Yes,No,"C, P",19 min
+Entry Level Customer Serv-Retail & Contact Center,https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-serv-retail-and-contact-center/,Yes,No,"P, C",19 min
+Entry Level Customer Service (General) Solution,https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-general-solution/,Yes,No,"C, P",14 min
+Entry Level Hotel Front Desk Solution,https://www.shl.com/solutions/products/product-catalog/view/entry-level-hotel-front-desk-solution/,Yes,No,"C, P",20 min
+Entry Level Sales Solution,https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-solution/,Yes,No,"C, P",20 min
+Entry Level Technical Support Solution,https://www.shl.com/solutions/products/product-catalog/view/entry-level-technical-support-solution/,Yes,No,"P, C",18 min
+ETL Testing (New),https://www.shl.com/solutions/products/product-catalog/view/etl-testing-new/,Yes,No,K,9 min
+Executive Scenarios,https://www.shl.com/solutions/products/product-catalog/view/executive-scenarios/,Yes,No,B, "Untimed"
+Executive Scenarios Narrative Report,https://www.shl.com/solutions/products/product-catalog/view/executive-scenarios-narrative-report/,Yes,No,B,
+Executive Scenarios Profile Report,https://www.shl.com/solutions/products/product-catalog/view/executive-scenarios-profile-report/,Yes,No,B,
+ExpressJS (New),https://www.shl.com/solutions/products/product-catalog/view/expressjs-new/,Yes,No,K,7 min
+Filing - Names (R1),https://www.shl.com/solutions/products/product-catalog/view/filing-names-r1/,Yes,No,K,3 min
+Filing - Numbers,https://www.shl.com/solutions/products/product-catalog/view/filing-numbers/,Yes,No,K,3 min
+Financial Accounting (New),https://www.shl.com/solutions/products/product-catalog/view/financial-accounting-new/,Yes,No,K,9 min
+Financial and Banking Services (New),https://www.shl.com/solutions/products/product-catalog/view/financial-and-banking-services-new/,Yes,No,K,9 min
+Fire Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/fire-engineering-new/,Yes,No,K,10 min
+Following Instructions v1 - UK (R1),https://www.shl.com/solutions/products/product-catalog/view/following-instructions-v1-uk-r1/,Yes,No,K,8 min
+Following Instructions v1 - US (R2),https://www.shl.com/solutions/products/product-catalog/view/following-instructions-v1-us-r2/,Yes,No,K,8 min
+Food and Beverage Services (New),https://www.shl.com/solutions/products/product-catalog/view/food-and-beverage-services-new/,Yes,No,K,7 min
+Food Science (New),https://www.shl.com/solutions/products/product-catalog/view/food-science-new/,Yes,No,K,6 min
+Front Office Management (New),https://www.shl.com/solutions/products/product-catalog/view/front-office-management-new/,Yes,No,K,7 min
+Fundamentals of Chemistry (New),https://www.shl.com/solutions/products/product-catalog/view/fundamentals-of-chemistry-new/,Yes,No,K,8 min
+Fundamentals of Physics (New),https://www.shl.com/solutions/products/product-catalog/view/fundamentals-of-physics-new/,Yes,No,K,8 min
+General Diseases (New),https://www.shl.com/solutions/products/product-catalog/view/general-diseases-new/,Yes,No,K,5 min
+Geoinformatics Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/geoinformatics-engineering-new/,Yes,No,K,10 min
+Geoscience Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/geoscience-engineering-new/,Yes,No,K,8 min
+GIT (New),https://www.shl.com/solutions/products/product-catalog/view/git-new/,Yes,No,K,13 min
+Global Skills Assessment,https://www.shl.com/solutions/products/product-catalog/view/global-skills-assessment/,Yes,No,"C, K",16 min
+Graduate Scenarios,https://www.shl.com/solutions/products/product-catalog/view/graduate-scenarios/,Yes,No,B, "Untimed"
+Graduate Scenarios Narrative Report,https://www.shl.com/solutions/products/product-catalog/view/graduate-scenarios-narrative-report/,Yes,No,B,
+Graduate Scenarios Profile Report,https://www.shl.com/solutions/products/product-catalog/view/graduate-scenarios-profile-report/,Yes,No,B,
+Hibernate (New),https://www.shl.com/solutions/products/product-catalog/view/hibernate-new/,Yes,No,K,5 min
+HIPAA (Security),https://www.shl.com/solutions/products/product-catalog/view/hipaa-security/,Yes,Yes,K,15 min
+HiPo Assessment Report 1.0,https://www.shl.com/solutions/products/product-catalog/view/hipo-assessment-report-1-0/,Yes,No,"C, P",
+HiPo Assessment Report 2.0,https://www.shl.com/solutions/products/product-catalog/view/hipo-assessment-report-2-0/,Yes,No,"C, P",
+HiPo Unlocking Potential Report 2.0,https://www.shl.com/solutions/products/product-catalog/view/hipo-unlocking-potential-report-2-0/,Yes,No,C,
+Housekeeping (New),https://www.shl.com/solutions/products/product-catalog/view/housekeeping-new/,Yes,No,K,7 min
+HTML/CSS (New),https://www.shl.com/solutions/products/product-catalog/view/htmlcss-new/,Yes,No,K,12 min
+HTML5 (New),https://www.shl.com/solutions/products/product-catalog/view/html5-new/,Yes,No,K,11 min
+Human Resources (New),https://www.shl.com/solutions/products/product-catalog/view/human-resources-new/,Yes,No,K,8 min
+IBM DataStage (New),https://www.shl.com/solutions/products/product-catalog/view/ibm-datastage-new/,Yes,No,K,15 min
+IBM Sterling Order Management System (New),https://www.shl.com/solutions/products/product-catalog/view/ibm-sterling-order-management-system-new/,Yes,No,K,13 min
+Industrial Engineering (New),https://www.shl.com/solutions/products/product-catalog/view/industrial-engineering-new/,Yes,No,K,9 min
+Informatica (Architecture) (New),https://www.shl.com/solutions/products/product-catalog/view/informatica-architecture-new/,Yes,No,K,10 min
+Informatica (Developer) (New),https://www.shl.com/solutions/products/product-catalog/view/informatica-developer-new/,Yes,No,K,11 min
+Claims/Operations Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/claimsoperations-supervisor-solution/,Yes,Yes,"P, S, A, B",48 min
+Contact Center Customer Service + 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-customer-service-8-0/,Yes,No,"A, B, C, P, S",41 min
+Contact Center Customer Service 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-customer-service-8-0-4269/,Yes,No,"S, B, C, P",31 min
+Contact Center Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/contact-center-manager-short-form/,Yes,Yes,"A, B, P, S",50 min
+Contact Center Sales & Service + 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-sales-and-service-8-0/,Yes,No,"P, B, C, A, S",41 min
+Contact Center Sales & Service 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-sales-and-service-8-0-4268/,Yes,No,"S, B, C, P",31 min
+Contact Center Team Lead/Coach - Short Form,https://www.shl.com/solutions/products/product-catalog/view/contact-center-team-leadcoach-short-form/,Yes,Yes,"A, B, P, S",45 min
+Contact Centre Agent Solution - UK,https://www.shl.com/solutions/products/product-catalog/view/contact-centre-agent-solution-uk/,Yes,No,"A, B, P, S",39 min
+Customer Service - Short Form,https://www.shl.com/solutions/products/product-catalog/view/customer-service-short-form/,Yes,Yes,"A, B, P",42 min
+Customer Service - Short Form - UK,https://www.shl.com/solutions/products/product-catalog/view/customer-service-short-form-uk/,Yes,Yes,"A, B, P",42 min
+Customer Service with Sales - Short Form,https://www.shl.com/solutions/products/product-catalog/view/customer-service-with-sales-short-form/,Yes,Yes,"A, B, P",44 min
+Director - Short Form,https://www.shl.com/solutions/products/product-catalog/view/director-short-form/,Yes,Yes,"A, B, P",69 min
+District/Regional Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/districtregional-manager-solution/,Yes,Yes,"A, B, P",65 min
+Entry Level Cashier 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-7-1-%28americas%29/,Yes,No,"B, P, A",18 min
+Entry Level Cashier 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-7-1-%28international%29/,Yes,No,"A, B, P",18 min
+Entry Level Customer Service 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-7-1-%28americas%29/,Yes,No,"C, P",19 min
+Entry Level Customer Service 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-%28retail-and-cc%29-7-1/,Yes,No,"C, P",19 min
+Entry Level Customer Service 7.1 (South Africa),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-7-1-%28south-africa%29/,Yes,No,"C, P",19 min
+Entry level Sales 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1-%28americas%29/,Yes,No,"B, C, P",20 min
+Entry level Sales 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1/,Yes,No,"P, B, C",20 min
+Entry Level Sales Sift Out 7.1,https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-sift-out-7-1/,Yes,No,"C, P, B",20 min
+Event Sales Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/event-sales-manager-solution/,Yes,Yes,"S, A, B, P",50 min
+Executive - Short Form,https://www.shl.com/solutions/products/product-catalog/view/executive-short-form/,Yes,Yes,"A, B, P",74 min
+Financial Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/financial-professional-short-form/,Yes,No,"A, B, P",35 min
+Financial Services Representative Solution,https://www.shl.com/solutions/products/product-catalog/view/financial-services-representative-solution/,Yes,No,"A, B, P",44 min
+Front Desk Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/front-desk-associate-solution/,Yes,Yes,"A, B, P",50 min
+Gaming Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/gaming-associate-solution/,Yes,Yes,"A, B, P, S",50 min
+Gaming Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/gaming-manager-solution/,Yes,Yes,"S, A, B, K, P",55 min
+General Entry Level - All Industries 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-all-industries-7-0-solution/,Yes,No,B,19 min
+General Entry Level - All Industries 7.1 Solution,https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-all-industries-7-1-solution/,Yes,No,B,19 min
+General Entry Level - All Industries 7.1(Americas),https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-all-industries-7-1%28americas%29/,Yes,No,B,19 min
+General Entry Level – Data Entry 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-data-entry-7-0-solution/,Yes,No,"B, K",24 min
+Graduate + 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/graduate-8-0-job-focused-assessment/,Yes,No,"A, B, P",30 min
+Graduate 7.1 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/graduate-7-1-job-focused-assessment/,Yes,No,"B, C",19 min
+Graduate 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/graduate-8-0-job-focused-assessment-4228/,Yes,No,"P, B",20 min
+Guest Service Team 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/guest-service-team-7-0-solution/,Yes,No,B,18 min
+Account Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/account-manager-solution/,Yes,Yes,"C, P, A, B",49 min
+Administrative Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/administrative-professional-short-form/,Yes,Yes,"A, K, P",36 min
+Agency Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/agency-manager-solution/,Yes,Yes,"A, B, P, S",51 min
+Apprentice + 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment-4261/,Yes,No,"B, P",30 min
+Apprentice 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/apprentice-8-0-job-focused-assessment/,Yes,No,"B, P",20 min
+Bank Administrative Assistant - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-administrative-assistant-short-form/,Yes,No,"A, B, K, P",35 min
+Bank Collections Agent - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-collections-agent-short-form/,Yes,No,"A, B, P",45 min
+Bank Operations Supervisor - Short Form,https://www.shl.com/solutions/products/product-catalog/view/bank-operations-supervisor-short-form/,Yes,Yes,"A, B, P, S",45 min
+Bilingual Spanish Reservation Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/bilingual-spanish-reservation-agent-solution/,Yes,Yes,"B, P, S, A",43 min
+"Bookkeeping, Accounting, Auditing Clerk Short Form",https://www.shl.com/solutions/products/product-catalog/view/bookkeeping-accounting-auditing-clerk-short-form/,Yes,Yes,"P, S, K, B, A",49 min
+Branch Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/branch-manager-short-form/,Yes,No,"A, B, P",50 min
+Cashier Solution,https://www.shl.com/solutions/products/product-catalog/view/cashier-solution/,Yes,Yes,"B, A, P",28 min
+Global Skills Development Report,https://www.shl.com/solutions/products/product-catalog/view/global-skills-development-report/,Yes,No,"A, E, B, C, D, P",
+.NET Framework 4.5,https://www.shl.com/solutions/products/product-catalog/view/net-framework-4-5/,Yes,Yes,K,30 min
+.NET MVC (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvc-new/,Yes,No,K,17 min
+.NET MVVM (New),https://www.shl.com/solutions/products/product-catalog/view/net-mvvm-new/,Yes,No,K,5 min
+.NET WCF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wcf-new/,Yes,No,K,11 min
+.NET WPF (New),https://www.shl.com/solutions/products/product-catalog/view/net-wpf-new/,Yes,No,K,9 min
+.NET XAML (New),https://www.shl.com/solutions/products/product-catalog/view/net-xaml-new/,Yes,No,K,5 min
+Accounts Payable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-new/,Yes,No,K,9 min
+Accounts Payable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-payable-simulation-new/,Yes,No,S,8 min
+Accounts Receivable (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-new/,Yes,No,K,13 min
+Accounts Receivable Simulation (New),https://www.shl.com/solutions/products/product-catalog/view/accounts-receivable-simulation-new/,Yes,No,S,8 min
+ADO.NET (New),https://www.shl.com/solutions/products/product-catalog/view/ado-net-new/,Yes,No,K,10 min
+Claims/Operations Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/claimsoperations-supervisor-solution/,Yes,Yes,"P, S, A, B",48 min
+Contact Center Customer Service + 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-customer-service-8-0/,Yes,No,"A, B, C, P, S",41 min
+Contact Center Customer Service 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-customer-service-8-0-4269/,Yes,No,"S, B, C, P",31 min
+Contact Center Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/contact-center-manager-short-form/,Yes,Yes,"A, B, P, S",50 min
+Contact Center Sales & Service + 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-sales-and-service-8-0/,Yes,No,"P, B, C, A, S",41 min
+Contact Center Sales & Service 8.0,https://www.shl.com/solutions/products/product-catalog/view/contact-center-sales-and-service-8-0-4268/,Yes,No,"S, B, C, P",31 min
+Contact Center Team Lead/Coach - Short Form,https://www.shl.com/solutions/products/product-catalog/view/contact-center-team-leadcoach-short-form/,Yes,Yes,"A, B, P, S",45 min
+Contact Centre Agent Solution - UK,https://www.shl.com/solutions/products/product-catalog/view/contact-centre-agent-solution-uk/,Yes,No,"A, B, P, S",39 min
+Customer Service - Short Form,https://www.shl.com/solutions/products/product-catalog/view/customer-service-short-form/,Yes,Yes,"A, B, P",42 min
+Customer Service - Short Form - UK,https://www.shl.com/solutions/products/product-catalog/view/customer-service-short-form-uk/,Yes,Yes,"A, B, P",42 min
+Customer Service with Sales - Short Form,https://www.shl.com/solutions/products/product-catalog/view/customer-service-with-sales-short-form/,Yes,Yes,"A, B, P",44 min
+Director - Short Form,https://www.shl.com/solutions/products/product-catalog/view/director-short-form/,Yes,Yes,"A, B, P",69 min
+District/Regional Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/districtregional-manager-solution/,Yes,Yes,"A, B, P",65 min
+Entry Level Cashier 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-7-1-%28americas%29/,Yes,No,"B, P, A",18 min
+Entry Level Cashier 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-cashier-7-1-%28international%29/,Yes,No,"A, B, P",18 min
+Entry Level Customer Service 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-7-1-%28americas%29/,Yes,No,"C, P",19 min
+Entry Level Customer Service 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-%28retail-and-cc%29-7-1/,Yes,No,"C, P",19 min
+Entry Level Customer Service 7.1 (South Africa),https://www.shl.com/solutions/products/product-catalog/view/entry-level-customer-service-7-1-%28south-africa%29/,Yes,No,"C, P",19 min
+Entry level Sales 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1-%28americas%29/,Yes,No,"B, C, P",20 min
+Entry level Sales 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1/,Yes,No,"P, B, C",20 min
+Entry Level Sales Sift Out 7.1,https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-sift-out-7-1/,Yes,No,"C, P, B",20 min
+Event Sales Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/event-sales-manager-solution/,Yes,Yes,"S, A, B, P",50 min
+Executive - Short Form,https://www.shl.com/solutions/products/product-catalog/view/executive-short-form/,Yes,Yes,"A, B, P",74 min
+Financial Professional - Short Form,https://www.shl.com/solutions/products/product-catalog/view/financial-professional-short-form/,Yes,No,"A, B, P",35 min
+Financial Services Representative Solution,https://www.shl.com/solutions/products/product-catalog/view/financial-services-representative-solution/,Yes,No,"A, B, P",44 min
+Front Desk Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/front-desk-associate-solution/,Yes,Yes,"A, B, P",50 min
+Gaming Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/gaming-associate-solution/,Yes,Yes,"A, B, P, S",50 min
+Gaming Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/gaming-manager-solution/,Yes,Yes,"S, A, B, K, P",55 min
+General Entry Level - All Industries 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-all-industries-7-0-solution/,Yes,No,B,19 min
+General Entry Level - All Industries 7.1 Solution,https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-all-industries-7-1-solution/,Yes,No,B,19 min
+General Entry Level - All Industries 7.1(Americas),https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-all-industries-7-1%28americas%29/,Yes,No,B,19 min
+General Entry Level – Data Entry 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/general-entry-level-data-entry-7-0-solution/,Yes,No,"B, K",24 min
+Graduate + 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/graduate-8-0-job-focused-assessment/,Yes,No,"A, B, P",30 min
+Graduate 7.1 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/graduate-7-1-job-focused-assessment/,Yes,No,"B, C",19 min
+Graduate 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/graduate-8-0-job-focused-assessment-4228/,Yes,No,"P, B",20 min
+Guest Service Team 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/guest-service-team-7-0-solution/,Yes,No,B,18 min
+Guest Services Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/guest-services-associate-solution/,Yes,Yes,"A, B, P, S",48 min
+Healthcare Aide 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/healthcare-aide-7-0-solution/,Yes,No,B,22 min
+Healthcare Call Center Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/healthcare-call-center-agent-solution/,Yes,Yes,"A, B, P, S",44 min
+Healthcare Service Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/healthcare-service-associate-solution/,Yes,Yes,"A, B, P",37 min
+Healthcare Support Specialist Solution,https://www.shl.com/solutions/products/product-catalog/view/healthcare-support-specialist-solution/,Yes,Yes,"A, B, P",30 min
+Home Health Aide Solution,https://www.shl.com/solutions/products/product-catalog/view/home-health-aide-solution/,Yes,Yes,"A, B, P",41 min
+Hospitality Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/hospitality-manager-solution/,Yes,Yes,"A, B, K, P",57 min
+Host Solution,https://www.shl.com/solutions/products/product-catalog/view/host-solution/,Yes,Yes,"B, P",30 min
+Industrial - Entry Level 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/industrial-entry-level-7-0-solution/,Yes,No,B,20 min
+Industrial - Entry Level 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/industrial-entry-level-7-1-%28americas%29/,Yes,No,B,20 min
+Industrial - Entry Level 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/industrial-entry-level-7-1-%28international%29/,Yes,No,B,20 min
+Industrial - Professional and Skilled 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/industrial-professional-and-skilled-7-0-solution/,Yes,Yes,"A, B",49 min
+Industrial - Semi-skilled 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/industrial-semi-skilled-7-1-%28americas%29/,Yes,No,B,24 min
+Industrial - Semi-skilled 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/industrial-semi-skilled-7-1-%28international%29/,Yes,No,B,24 min
+Industrial Professional and Skilled 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/industrial-professional-and-skilled-7-1-%28americas%29/,Yes,No,"A, B",49 min
+Industrial Professional and Skilled 7.1 Solution,https://www.shl.com/solutions/products/product-catalog/view/industrial-professional-and-skilled-7-1-solution/,Yes,No,"A, B",49 min
+Installation and Repair Technician Solution,https://www.shl.com/solutions/products/product-catalog/view/installation-and-repair-technician-solution/,Yes,Yes,"A, B, P, S",49 min
+Insurance Account Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/insurance-account-manager-solution/,Yes,Yes,"A, B, P, S",48 min
+Insurance Administrative Assistant Solution,https://www.shl.com/solutions/products/product-catalog/view/insurance-administrative-assistant-solution/,Yes,Yes,"A, B, P, S",24 min
+Insurance Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/insurance-agent-solution/,Yes,Yes,"A, B, P",46 min
+Insurance Director Solution,https://www.shl.com/solutions/products/product-catalog/view/insurance-director-solution/,Yes,Yes,"A, B, P",49 min
+Insurance Sales Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/insurance-sales-manager-solution/,Yes,Yes,"A, B, P, S",51 min
+Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/manager-short-form/,Yes,Yes,"A, B, K, P, S",57 min
+Manager + 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/manager-7-0-solution-3955/,Yes,Yes,"A, B, C",53 min
+Manager + 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/manager-7-1-solution-4242/,Yes,Yes,"B, C, P",63 min
+Manager + 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/manager-7-1-%28international%29/,Yes,Yes,"B, C, P",63 min
+Manager 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/manager-7-0-solution/,Yes,No,"B, C",35 min
+Manager 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/manager-7-1-%28americas%29/,Yes,No,"B, C, P",40 min
+Manager 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/manager-7-1-solution/,Yes,No,"B, C, P",40 min
+Manager 8.0 JFA,https://www.shl.com/solutions/products/product-catalog/view/manager-8-0-jfa/,Yes,No,"B, K, P",26 min
+Manager 8.0+ JFA,https://www.shl.com/solutions/products/product-catalog/view/manager-8-0-jfa-4310/,Yes,No,"B, K, P",44 min
+Manufacturing Production Team Member,https://www.shl.com/solutions/products/product-catalog/view/manufacturing-production-team-member/,Yes,No,"A, B",35 min
+Manufacturing Skilled Maintenance Worker,https://www.shl.com/solutions/products/product-catalog/view/manufacturing-skilled-maintenance-worker/,Yes,No,"A, B",45 min
+Network Engineer/Analyst Solution,https://www.shl.com/solutions/products/product-catalog/view/network-engineeranalyst-solution/,Yes,Yes,"P, S, K, B, A",41 min
+Nurse Leader Solution,https://www.shl.com/solutions/products/product-catalog/view/nurse-leader-solution/,Yes,Yes,"S, A, B, P",59 min
+Nurse Solution,https://www.shl.com/solutions/products/product-catalog/view/nurse-solution/,Yes,Yes,"P, A, B",66 min
+Nursing Assistant Solution,https://www.shl.com/solutions/products/product-catalog/view/nursing-assistant-solution/,Yes,No,"A, B, P",41 min
+Personal Banker - Short Form,https://www.shl.com/solutions/products/product-catalog/view/personal-banker-short-form/,Yes,No,"A, B, K, P, S",30 min
+Phone Banker - Short Form,https://www.shl.com/solutions/products/product-catalog/view/phone-banker-short-form/,Yes,No,"A, B, P",40 min
+Prep/Line Cook Solution,https://www.shl.com/solutions/products/product-catalog/view/prepline-cook-solution/,Yes,Yes,"A, B, P",24 min
+Professional + 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/professional-7-0-solution-3958/,Yes,Yes,"A, B, C",51 min
+Professional + 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/professional-7-1-%28americas%29/,Yes,Yes,"B, C, P",56 min
+Professional + 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/professional-7-1-solution/,Yes,Yes,"B, C, P",56 min
+Professional 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/professional-7-0-solution/,Yes,No,"B, C",33 min
+Professional 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/professional-7-1-solution-4247/,Yes,No,"C, B",33 min
+Professional 8.0 JFA,https://www.shl.com/solutions/products/product-catalog/view/professional-8-0-jfa/,Yes,No,"B, K, P",16 min
+Professional/Individual Contributor - Short Form,https://www.shl.com/solutions/products/product-catalog/view/professionalindividual-contributor-short-form/,Yes,Yes,"A, B, P, S",44 min
+Project Manager - Short Form,https://www.shl.com/solutions/products/product-catalog/view/project-manager-short-form/,Yes,Yes,"A, B, P, S",49 min
+Proof Operator - Processing Specialist -Short Form,https://www.shl.com/solutions/products/product-catalog/view/proof-operator-processing-specialist-short-form/,Yes,No,S,30 min
+Reservation Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/reservation-agent-solution/,Yes,Yes,"A, P, S, B",43 min
+Restaurant Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/restaurant-manager-solution/,Yes,Yes,"A, B, P, S",48 min
+Restaurant Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/restaurant-supervisor-solution/,Yes,Yes,"A, B, P",53 min
+Retail Consultant Solution,https://www.shl.com/solutions/products/product-catalog/view/retail-consultant-solution/,Yes,Yes,"A, B, P",45 min
+Retail Manager w/ Sales Solution,https://www.shl.com/solutions/products/product-catalog/view/retail-manager-w-sales-solution/,Yes,Yes,"A, B, P",43 min
+Retail Sales Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/retail-sales-associate-solution/,Yes,Yes,"A, B, P",29 min
+Sales Director Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-director-solution/,Yes,Yes,"A, B, P",59 min
+Sales Engineer Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-engineer-solution/,Yes,Yes,"A, B, K, P, S",61 min
+Sales Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-manager-solution/,Yes,Yes,"A, B, P",63 min
+Sales Professional 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-professional-7-0-solution/,Yes,No,"C, B",21 min
+Sales Professional 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/sales-professional-7-1-%28americas%29/,Yes,No,"B, C",21 min
+Sales Professional Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-professional-solution/,Yes,Yes,"A, B, P",47 min
+Sales Representative Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-representative-solution/,Yes,Yes,"A, B, P",29 min
+Sales Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-supervisor-solution/,Yes,Yes,"A, B, P",38 min
+Sales Support Specialist Solution,https://www.shl.com/solutions/products/product-catalog/view/sales-support-specialist-solution/,Yes,Yes,"A, B, P",43 min
+Senior Insurance Agent Solution,https://www.shl.com/solutions/products/product-catalog/view/senior-insurance-agent-solution/,Yes,No,"A, B, P",44 min
+Senior Sales Professional Solution,https://www.shl.com/solutions/products/product-catalog/view/senior-sales-professional-solution/,Yes,Yes,"A, B, P",42 min
+Server Solution,https://www.shl.com/solutions/products/product-catalog/view/server-solution/,Yes,Yes,"B, A, P",40 min
+Service Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/service-associate-solution/,Yes,Yes,"A, B, P",38 min
+Service Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/service-supervisor-solution/,Yes,Yes,"A, B, P",48 min
+Stock Clerk Solution,https://www.shl.com/solutions/products/product-catalog/view/stock-clerk-solution/,Yes,No,"A, B, P",25 min
+Store Manager 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/store-manager-7-0-solution/,Yes,No,"B, C",34 min
+Store Manager 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/store-manager-7-1-%28americas%29/,Yes,No,"B, C",34 min
+Store Manager 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/store-manager-7-1-%28international%29/,Yes,No,"C, B",34 min
+Store Manager Solution,https://www.shl.com/solutions/products/product-catalog/view/store-manager-solution/,Yes,Yes,"A, B, P",49 min
+Supervisor - Short Form,https://www.shl.com/solutions/products/product-catalog/view/supervisor-short-form/,Yes,Yes,S,57 min
+Supervisor 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/supervisor-7-0-solution/,Yes,No,"B, C",32 min
+Supervisor 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/supervisor-7-1-%28americas%29/,Yes,No,"B, C, P",29 min
+Supervisor 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/supervisor-7-1-%28international%29/,Yes,No,"P, C, B",29 min
+Support Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/support-associate-solution/,Yes,Yes,"A, B, P",38 min
+Support Supervisor Solution,https://www.shl.com/solutions/products/product-catalog/view/support-supervisor-solution/,Yes,Yes,"A, P, S, B",39 min
+Technical Sales Associate Solution,https://www.shl.com/solutions/products/product-catalog/view/technical-sales-associate-solution/,Yes,No,"A, B, P",41 min
+Technician/Technologist Solution,https://www.shl.com/solutions/products/product-catalog/view/techniciantechnologist-solution/,Yes,Yes,"A, B, P",52 min
+Technology Professional 8.0 Job Focused Assessment,https://www.shl.com/solutions/products/product-catalog/view/technology-professional-8-0-job-focused-assessment/,Yes,No,"C, P",16 min
+Telenurse Solution,https://www.shl.com/solutions/products/product-catalog/view/telenurse-solution/,Yes,Yes,"A, B, P",68 min
+Teller 7.0,https://www.shl.com/solutions/products/product-catalog/view/teller-7-0/,Yes,Yes,"B, K, P, S",35 min
+Teller with Sales - Short Form,https://www.shl.com/solutions/products/product-catalog/view/teller-with-sales-short-form/,Yes,No,"A, B, K, P, S",35 min
+Transcriptionist Solution,https://www.shl.com/solutions/products/product-catalog/view/transcriptionist-solution/,Yes,Yes,"A, B, K, P",33 min
+Workplace Safety - Individual 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/workplace-safety-individual-7-0-solution/,Yes,No,B,16 min
+Workplace Safety - Individual 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/workplace-safety-individual-7-1-solution/,Yes,No,B,16 min
+Workplace Safety - Team 7.0 Solution,https://www.shl.com/solutions/products/product-catalog/view/workplace-safety-team-7-0-solution/,Yes,No,B,20 min
+Workplace Safety - Team 7.1 (Americas),https://www.shl.com/solutions/products/product-catalog/view/workplace-safety-team-7-1-%28americas%29/,Yes,No,"B, C, P",20 min
+Workplace Safety - Team 7.1 (International),https://www.shl.com/solutions/products/product-catalog/view/workplace-safety-team-7-1-solution/,Yes,No,"B, C, P",20 min
+Workplace Safety Solution,https://www.shl.com/solutions/products/product-catalog/view/workplace-safety-solution/,Yes,Yes,"B, P",21 min

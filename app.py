@@ -1,16 +1,18 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
-import requests
 import time
-import json
-from urllib.parse import urljoin
 from typing import Dict, List, Any, Optional
 from src.utils.model_evaluation import ModelEvaluator
-from src.utils.visualization import (plot_benchmark_comparison, plot_test_type_distribution, plot_remote_adaptive_support,
-                                   add_search_method_explanation)
-from src.utils.benchmark.benchmark_runner import get_sample_benchmark_queries, run_benchmark
+from src.utils.visualization import (
+    plot_benchmark_comparison, 
+    plot_test_type_distribution,
+    plot_remote_adaptive_support,
+    display_recommendation_details,
+    add_search_method_explanation,
+    plot_duration_distribution
+)
+from src.utils.benchmark import get_sample_benchmark_queries, run_benchmark
 from src.utils.api_utils import format_api_response, health_check, validate_query_params
 
 # Set page configuration
@@ -260,32 +262,11 @@ def main():
                             if any(t in selected_types for t in r["testTypes"].replace(" ", "").split(","))
                         ]
                     
-                    # Display results
+                    # Display results using the visualization module
                     if filtered_recommendations:
                         st.success(f"Found {len(filtered_recommendations)} matching assessments in {proc_time:.2f} ms")
-                        
-                        # Display recommendations
-                        for i, rec in enumerate(filtered_recommendations):
-                            match_percentage = int(rec["score"] * 100)
-                            
-                            # Color coding based on match score
-                            if match_percentage >= 80:
-                                match_color = "green"
-                            elif match_percentage >= 60:
-                                match_color = "orange"
-                            else:
-                                match_color = "gray"
-                            
-                            st.markdown(f"""
-                            <div class="card">
-                                <h3>{i+1}. {rec["testName"]} <span style="float:right; color:{match_color}; font-weight:bold;">{match_percentage}% Match</span></h3>
-                                <p><strong>Test Types:</strong> {rec["testTypes"]}</p>
-                                <p><strong>Duration:</strong> {rec["duration"]}</p>
-                                <p><strong>Remote Testing:</strong> {rec["remoteTestingSupport"]}</p>
-                                <p><strong>Adaptive Testing:</strong> {rec["adaptiveIRTSupport"]}</p>
-                                <p><a href="{rec["link"]}" target="_blank">View Assessment Details</a></p>
-                            </div>
-                            """, unsafe_allow_html=True)
+                        for recommendation in filtered_recommendations:
+                            display_recommendation_details(recommendation)
                     else:
                         st.warning("No assessments match your filters. Try adjusting your criteria.")
                 else:
@@ -297,13 +278,13 @@ def main():
     with tab2:
         st.subheader("SHL Assessment Catalog Analysis")
         
-        # Distribution of test types
         st.markdown("### Test Type Distribution")
         st.write("This chart shows the distribution of different test types across the SHL assessment catalog.")
-        
         plot_test_type_distribution(df)
         
-        # Remote and Adaptive support analysis
+        st.markdown("### Assessment Duration Analysis")
+        plot_duration_distribution(df)
+        
         st.markdown("### Testing Support Analysis")
         plot_remote_adaptive_support(df)
     

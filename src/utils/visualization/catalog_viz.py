@@ -53,6 +53,54 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     
     st.plotly_chart(fig, use_container_width=True)
 
+def plot_duration_distribution(df: pd.DataFrame) -> None:
+    """
+    Visualize the distribution of test durations
+    """
+    # Determine which column name to use for duration
+    duration_col = None
+    if 'Duration' in df.columns:
+        duration_col = 'Duration'
+    elif 'duration' in df.columns:
+        duration_col = 'duration'
+    
+    if duration_col is None:
+        st.info("Duration column not found in dataset. Skipping duration distribution analysis.")
+        return
+        
+    # Extract duration values
+    durations = []
+    
+    for duration in df[duration_col]:
+        if isinstance(duration, str):
+            # Handle ranges like "35-40 min"
+            parts = duration.replace('min', '').strip().split('-')
+            try:
+                # Take the first number if range, or the only number
+                duration_value = int(parts[0])
+                durations.append(duration_value)
+            except ValueError:
+                pass
+    
+    if not durations:
+        st.warning("No valid duration data found in dataset.")
+        return
+        
+    fig = px.histogram(
+        x=durations,
+        nbins=10,
+        title='Distribution of Assessment Durations',
+        labels={'x': 'Duration (minutes)', 'y': 'Count'},
+        color_discrete_sequence=['#36A2EB']
+    )
+    
+    fig.update_layout(
+        xaxis_title='Duration (minutes)',
+        yaxis_title='Number of Assessments',
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
+
 def plot_remote_adaptive_support(df: pd.DataFrame) -> None:
     """
     Visualize remote testing and adaptive support distribution
