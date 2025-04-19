@@ -1,4 +1,44 @@
 import streamlit as st
+
+# 1. grab raw query params
+params = st.experimental_get_query_params()
+
+# 2. detect “api mode”
+if params.get("api", [""])[0] == "1":
+    # required params
+    query = params.get("query", [""])[0]
+    top_k = int(params.get("top_k", ["5"])[0])
+    method = params.get("method", ["hybrid"])[0]
+
+    # 3. run your model (cache it if you want speed)
+    from src.utils.model_evaluation import ModelEvaluator
+    model = ModelEvaluator("src/data/shl_full_catalog_with_duration.csv")
+    result = model.evaluate_query(query, top_k=top_k, method=method)
+
+    # 4. format the response exactly as JSON
+    recs = []
+    for item in result["results"]:
+        recs.append({
+            "url":                item["link"],
+            "adaptive_support":   item["adaptiveIRTSupport"],
+            "description":        item["testName"],
+            "duration":           item["duration"],
+            "remote_support":     item["remoteTestingSupport"],
+            "test_type":          [c.strip() for c in item["testTypes"].split(",")]
+        })
+
+    out = {
+        "status":            "success",
+        "recommendations":   recs[:top_k],
+        "processing_time_ms": result["processing_time_ms"]
+    }
+
+    # 5. emit JSON and stop
+    st.json(out)
+    st.stop()
+
+
+import streamlit as st
 import pandas as pd
 import numpy as np
 import time
