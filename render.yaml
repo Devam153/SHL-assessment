@@ -1,10 +1,15 @@
 services:
-  # Streamlit Application Service
   - type: web
     name: shl-recommender
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT
+    env: docker
+    region: singapore
+    plan: standard
+    healthCheckPath: /health
+    healthCheckTimeout: 180
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.9.0
+      - key: MODEL_CACHE_DIR
+        value: /var/cache/model
+    disk:
+      name: model-cache
+      mountPath: /var/cache/model
+      sizeGB: 1
