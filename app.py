@@ -8,10 +8,9 @@ import json
 from urllib.parse import urljoin
 from typing import Dict, List, Any, Optional
 from src.utils.model_evaluation import ModelEvaluator
-from src.utils.visualization import (plot_benchmark_comparison, plot_test_type_distribution,
-                                   plot_duration_distribution, plot_remote_adaptive_support,
+from src.utils.visualization import (plot_benchmark_comparison, plot_test_type_distribution, plot_remote_adaptive_support,
                                    add_search_method_explanation)
-from src.utils.benchmark_utils import get_sample_benchmark_queries, run_benchmark
+from src.utils.benchmark.benchmark_runner import get_sample_benchmark_queries, run_benchmark
 from src.utils.api_utils import format_api_response, health_check, validate_query_params
 
 # Set page configuration
@@ -303,10 +302,6 @@ def main():
         st.write("This chart shows the distribution of different test types across the SHL assessment catalog.")
         
         plot_test_type_distribution(df)
-        
-        # Duration analysis
-        st.markdown("### Assessment Duration Analysis")
-        plot_duration_distribution(df)
         
         # Remote and Adaptive support analysis
         st.markdown("### Testing Support Analysis")
