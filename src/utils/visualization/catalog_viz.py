@@ -15,31 +15,27 @@ def clean_duration(duration_str: str) -> int | None:
     if not isinstance(duration_str, str):
         return None
         
-    # Normalize the string
-    duration = duration_str.lower().strip()
+    # Remove 'min' and whitespace
+    duration = duration_str.lower().replace('min', '').strip()
     
-    # Handle special cases first
-    if duration in ['untimed', 'variable', '']:
-        return None
-    
-    # Handle "max X" format
-    if 'max' in duration:
+    # Handle ranges like "35-40" - take the average
+    if '-' in duration:
         try:
-            # Extract number after "max"
-            max_match = re.search(r'max\s*(\d+)', duration)
-            if max_match:
-                return int(max_match.group(1))
+            low, high = map(int, duration.split('-'))
+            return (low + high) // 2
         except:
             return None
             
-    # Handle ranges like "35-40"
-    if '-' in duration:
+    # Handle 'max' prefixed durations
+    if 'max' in duration:
         try:
-            low, high = map(int, re.findall(r'\d+', duration))
-            return (low + high) // 2  # Use average for ranges
+            # Extract the number after 'max'
+            max_value = re.findall(r'max\s*(\d+)', duration)
+            if max_value:
+                return int(max_value[0])
         except:
-            return None
-    
+            pass
+            
     # Try to extract just numbers
     try:
         return int(re.findall(r'\d+', duration)[0])
@@ -95,7 +91,7 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
 
 def plot_duration_distribution(df: pd.DataFrame) -> None:
     """
-    Visualize the distribution of test durations, including max durations
+    Visualize the distribution of test durations, excluding non-numeric values
     """
     if 'Duration' not in df.columns:
         st.warning("Duration column not found in dataset")
@@ -103,7 +99,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         
     # Clean and convert durations
     durations = []
-    max_durations = []
     invalid_durations = []
     special_values = {}
     
@@ -111,16 +106,14 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         if pd.isna(duration):
             continue
             
-        str_duration = str(duration).strip()
+        str_duration = str(duration)
         cleaned_duration = clean_duration(str_duration)
         
         if cleaned_duration is not None:
-            if 'max' in str_duration.lower():
-                max_durations.append((cleaned_duration, str_duration))
             durations.append(cleaned_duration)
         else:
             # Collect special duration values for reporting
-            special_value = str_duration.lower()
+            special_value = str_duration.strip().lower()
             if special_value:
                 special_values[special_value] = special_values.get(special_value, 0) + 1
                 invalid_durations.append(str_duration)
@@ -138,6 +131,12 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         color_discrete_sequence=['#36A2EB']
     )
     
+    fig.update_layout(
+        xaxis_title='Duration (minutes)',
+        yaxis_title='Number of Assessments',
+        bargap=0.2
+    )
+    
     # Add mean and median lines
     mean_duration = sum(durations) / len(durations)
     median_duration = sorted(durations)[len(durations)//2]
@@ -146,18 +145,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
                   annotation_text=f"Mean: {mean_duration:.1f} min")
     fig.add_vline(x=median_duration, line_dash="dash", line_color="green",
                   annotation_text=f"Median: {median_duration:.1f} min")
-    
-    # Add annotations for max durations
-    for max_val, original_str in max_durations:
-        fig.add_annotation(
-            x=max_val,
-            y=fig.data[0].y.max() * 0.9,  # Position at 90% of max height
-            text=f"max {max_val}",
-            showarrow=True,
-            arrowhead=1,
-            ax=0,
-            ay=-40
-        )
     
     st.plotly_chart(fig, use_container_width=True)
     
@@ -172,7 +159,7 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
     with col3:
         st.metric("Total Valid Samples", str(len(durations)))
         
-    # Display non-numeric durations
+    # Display non-numeric durations in a more organized way
     if invalid_durations:
         st.markdown("### Non-numeric Durations")
         
@@ -206,12 +193,10 @@ def plot_remote_adaptive_support(df: pd.DataFrame) -> None:
         return
     
     try:
-        # Remote Testing Support
         remote_count = df[remote_col].str.lower().eq('yes').sum()
         remote_data = {'Category': ['Supports Remote', 'No Remote Support'], 
                       'Count': [remote_count, len(df) - remote_count]}
         
-        # Adaptive/IRT Support
         adaptive_count = df[adaptive_col].str.lower().eq('yes').sum()
         adaptive_data = {'Category': ['Supports Adaptive', 'No Adaptive Support'], 
                         'Count': [adaptive_count, len(df) - adaptive_count]}
