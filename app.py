@@ -446,7 +446,6 @@ def main():
         - 📈 **Comprehensive Filtering Options**  
         """)
 
-        # ⬇️ Core Technologies in 3 columns
         st.markdown("### Core Technologies")
         col1, col2, col3 = st.columns(3)
 
@@ -470,7 +469,6 @@ def main():
             - Plotly & Matplotlib (Visualization)  
             """)
 
-        # Continue rest of the markdown
         st.markdown("""
         ### Recommendation Process
         
@@ -501,9 +499,7 @@ def main():
         ### Source Code
         Access the complete project on GitHub: [SHL Recommender](https://github.com/Devam153/SHL-assessment)
         """)
-
     
-    # Footer
     st.markdown("""
     <div class="footer">
         SHL Assessment Recommender • Built with Streamlit • Data Source: SHL Product Catalog
