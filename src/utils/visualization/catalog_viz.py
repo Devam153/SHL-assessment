@@ -42,6 +42,19 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     """
     Visualize the distribution of test types in the catalog
     """
+    # Updated test type map with full names
+    test_type_map = {
+        "K": "Knowledge & Skills",
+        "B": "Behavioral",
+        "P": "Personality",
+        "C": "Cognitive",
+        "A": "Aptitude",
+        "S": "Situational",
+        "E": "Emotional Intelligence",
+        "D": "Development"
+    }
+    
+    # Determine which column name to use for test types
     test_types_col = None
     if 'Test Types' in df.columns:
         test_types_col = 'Test Types'
@@ -52,6 +65,7 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
         st.warning("Test Types column not found in dataset. Cannot display test type distribution.")
         return
         
+    # Extract test types
     all_types = []
     
     for types_str in df[test_types_col]:
@@ -59,6 +73,7 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
             types = [t.strip() for t in types_str.split(',')]
             all_types.extend(types)
     
+    # Count occurrences
     if not all_types:
         st.warning("No test type data found in dataset.")
         return
@@ -66,9 +81,13 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     type_counts = pd.Series(all_types).value_counts().reset_index()
     type_counts.columns = ['Test Type', 'Count']
     
+    # Map short codes to full names
+    type_counts['Full Name'] = type_counts['Test Type'].map(test_type_map)
+    
+    # Create plot with full names
     fig = px.bar(
         type_counts, 
-        x='Test Type', 
+        x='Full Name', 
         y='Count',
         title='Distribution of Test Types in Assessment Catalog',
         color='Test Type'
@@ -77,6 +96,7 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     fig.update_layout(
         xaxis_title='Test Type',
         yaxis_title='Number of Assessments',
+        xaxis_tickangle=-45  # Rotate labels for better readability
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -85,10 +105,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
     """
     Visualize the distribution of test durations, excluding non-numeric values
     """
-    if 'Duration' not in df.columns:
-        st.warning("Duration column not found in dataset")
-        return
-        
     durations = []
     invalid_durations = []
     special_values = {}
