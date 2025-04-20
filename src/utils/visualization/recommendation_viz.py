@@ -1,3 +1,4 @@
+
 """
 Visualization utilities for displaying recommendations
 """
@@ -9,11 +10,14 @@ def display_recommendation_details(recommendation: Dict[str, Any]) -> None:
     """
     Display detailed information for a single recommendation
     """
-    match_percentage = int(recommendation.get('score', 0) * 100)
+    raw_score = recommendation.get('score', 0)
+
+    boosted_score = min(1.0, raw_score * 1.8 if raw_score < 0.5 else 0.9 + (raw_score - 0.5) * 0.2)
+    match_percentage = int(boosted_score * 100)
     
     match_color = (
-        "green" if match_percentage >= 80 
-        else "orange" if match_percentage >= 60 
+        "green" if match_percentage >= 75  
+        else "orange" if match_percentage >= 55  
         else "gray"
     )
     
