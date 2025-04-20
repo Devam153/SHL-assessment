@@ -5,7 +5,6 @@ Visualization utilities for benchmark results
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-from typing import Dict, List, Any, Optional
 
 def plot_benchmark_comparison(benchmark_df: pd.DataFrame, metric: str = 'mean_recall_at_k') -> None:
     """

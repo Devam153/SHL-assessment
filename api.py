@@ -4,7 +4,6 @@ from fastapi.responses import JSONResponse
 import time
 import logging
 import os
-from typing import List, Dict, Any, Optional
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
