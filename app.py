@@ -28,39 +28,91 @@ st.set_page_config(
 # 1️⃣ grab raw query params via the new API
 params = st.query_params
 
-# 2️⃣ detect “api mode”
+# Cache model initialization
+@st.cache_resource
+def load_model():
+    try:
+        from src.utils.model_evaluation import ModelEvaluator
+        return ModelEvaluator("src/data/shl_full_catalog_with_duration.csv")
+    except Exception as e:
+        st.error(f"Model initialization failed: {str(e)}")
+        return None
+
+# 💡 Detect health check request first
+if params.get("health", [""])[0] == "1":
+    model = load_model()
+    response = {
+        "status": "healthy" if model is not None else "unhealthy",
+        "model_status": "ready" if model is not None else "failed"
+    }
+    st.json(response)
+    st.stop()
+
+# 2️⃣ detect API mode
 if params.get("api", [""])[0] == "1":
-    # parse parameters
-    query  = params.get("query", [""])[0]
-    top_k  = int(params.get("top_k", ["5"])[0])
+    model = load_model()
+    
+    if not model:
+        st.json({
+            "status": "error",
+            "message": "Model failed to initialize",
+            "recommended_assessments": []
+        })
+        st.stop()
+
+    # Parse parameters
+    query = params.get("query", [""])[0]
+    top_k = int(params.get("top_k", ["5"])[0])
     method = params.get("method", ["hybrid"])[0]
 
-    # load & run your model
-    from src.utils.model_evaluation import ModelEvaluator
-    model = ModelEvaluator("src/data/shl_full_catalog_with_duration.csv")
-    result = model.evaluate_query(query, top_k=top_k, method=method)
+    try:
+        result = model.evaluate_query(query, top_k=top_k, method=method)
+        
+        # Build JSON response with correct field names
+        recommendations = []
+        for item in result["results"][:top_k]:
+            # Convert duration to integer
+            duration = int(item['duration'].split()[0]) if 'duration' in item else 0
+            
+            # Map test types to full names
+            test_type_map = {
+                "K": "Knowledge & Skills",
+                "B": "Behavioral",
+                "P": "Personality",
+                "C": "Cognitive",
+                "A": "Aptitude"
+            }
+            test_types = [test_type_map.get(t.strip(), t.strip()) 
+                        for t in item["testTypes"].split(",")]
+            
+            recommendations.append({
+                "url": item["link"],
+                "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
+                "description": item["testName"],
+                "duration": duration,
+                "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
+                "test_type": test_types
+            })
 
-    # build JSON response
-    recs = []
-    for item in result["results"]:
-        recs.append({
-            "url":              item["link"],
-            "adaptive_support": item["adaptiveIRTSupport"],
-            "description":      item["testName"],
-            "duration":         item["duration"],
-            "remote_support":   item["remoteTestingSupport"],
-            "test_type":        [c.strip() for c in item["testTypes"].split(",")]
+        # Build final response with CORRECT FIELD NAME
+        response = {
+            "status": "success",
+            "recommended_assessments": recommendations,  # Changed to correct key
+            "processing_time_ms": result["processing_time_ms"]
+        }
+        
+        st.json(response)
+        st.stop()
+        
+    except Exception as e:
+        st.json({
+            "status": "error",
+            "message": str(e),
+            "recommended_assessments": []
         })
+        st.stop()
 
-    out = {
-        "status":             "success",
-        "recommendations":    recs[:top_k],
-        "processing_time_ms": result["processing_time_ms"]
-    }
 
-    # emit JSON & halt the rest of the app
-    st.json(out)
-    st.stop()
 
 # Apply custom styling
 st.markdown("""
