@@ -25,6 +25,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+@st.cache_data(ttl=3600)
+def load_metadata():
+    return pd.read_csv("src/data/shl_full_catalog_with_duration_desc.csv")
+
+df_meta = load_metadata()
+
 # 1️⃣ grab raw query params via the new API
 params = st.query_params
 
@@ -71,27 +77,28 @@ if params.get("api", [""])[0] == "1":
         # Build JSON response with correct field names
         recommendations = []
         for item in result["results"][:top_k]:
-            # Convert duration to integer
-            duration = int(item['duration'].split()[0]) if 'duration' in item else 0
+            link = item.get("link", "")
             
-            # Map test types to full names
-            test_type_map = {
-                "K": "Knowledge & Skills",
-                "B": "Behavioral",
-                "P": "Personality",
-                "C": "Cognitive",
-                "A": "Aptitude"
-            }
-            test_types = [test_type_map.get(t.strip(), t.strip()) 
-                        for t in item["testTypes"].split(",")]
+            # Look up the correct row
+            meta = df_meta[df_meta["Link"] == link]
+            row = meta.iloc[0] if not meta.empty else {}
+
+            # Get description and duration from CSV if available
+            description = row.get("Description", item.get("testName", ""))
+            duration_str = row.get("Duration", item.get("duration", "0 min"))
+            duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
+
+            # Get and parse test types
+            raw_types = row.get("Test Types", "")
+            test_types = [t.strip() for t in raw_types.split(",") if t.strip()]
             
             recommendations.append({
-                "url": item["link"],
+                "url": link,
                 "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
-                "description": item["Description"],
+                "description": description,
                 "duration": duration,
                 "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
-                "test_type": { str(i): t for i,t in enumerate(test_types) }
+                "test_type": test_types  # <- now it's a proper array like ["B", "A", "P"]
             })
 
         # Build final response with CORRECT FIELD NAME
