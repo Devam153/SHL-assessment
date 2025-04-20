@@ -96,7 +96,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     fig.update_layout(
         xaxis_title='Test Type',
         yaxis_title='Number of Assessments',
-        xaxis_tickangle=-45  # Rotate labels for better readability
     )
     
     st.plotly_chart(fig, use_container_width=True)
