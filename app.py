@@ -69,45 +69,60 @@ if params.get("api", [""])[0] == "1":
     # Parse parameters
     query = params.get("query", [""])[0]
     top_k = int(params.get("top_k", ["5"])[0])
-    method = params.get("method", ["hybrid"])[0]
+    method = params.get("method", ["tfidf"])[0]
 
     try:
         result = model.evaluate_query(query, top_k=top_k, method=method)
         
         # Build JSON response with correct field names
         recommendations = []
+
+        # Test type code to label mapping
+        test_type_map = {
+            "K": "Knowledge & Skills",
+            "B": "Behavioral",
+            "P": "Personality",
+            "C": "Cognitive",
+            "A": "Aptitude",
+            "S": "Simulation",
+            "E": "Emotional Intelligence",
+            "D": "Development"
+        }
+
         for item in result["results"][:top_k]:
             link = item.get("link", "")
             
-            # Look up the correct row
+            # Look up metadata from full catalog
             meta = df_meta[df_meta["Link"] == link]
             row = meta.iloc[0] if not meta.empty else {}
 
-            # Get description and duration from CSV if available
+            # Extract fields from CSV (fallback to model data)
             description = row.get("Description", item.get("testName", ""))
             duration_str = row.get("Duration", item.get("duration", "0 min"))
             duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
 
-            # Get and parse test types
+            # Convert test type codes to full labels
             raw_types = row.get("Test Types", "")
-            test_types = [t.strip() for t in raw_types.split(",") if t.strip()]
-            
+            test_types = [
+                test_type_map.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
+            ]
+
             recommendations.append({
                 "url": link,
                 "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
                 "description": description,
                 "duration": duration,
                 "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
-                "test_type": test_types  # <- now it's a proper array like ["B", "A", "P"]
+                "test_type": test_types  # ✅ now returns full readable labels
             })
 
-        # Build final response with CORRECT FIELD NAME
+        # Final API response
         response = {
             "status": "success",
-            "recommended_assessments": recommendations,  # Changed to correct key
+            "recommended_assessments": recommendations,
             "processing_time_ms": result["processing_time_ms"]
         }
-        
+
         st.json(response)
         st.stop()
         
