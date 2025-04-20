@@ -94,14 +94,17 @@ if params.get("api", [""])[0] == "1":
             
             # Look up metadata from full catalog
             meta = df_meta[df_meta["Link"] == link]
-            row = meta.iloc[0] if not meta.empty else {}
+            if meta.empty:
+                continue  # skip if no match
+            
+            row = meta.iloc[0]
 
-            # Extract fields from CSV (fallback to model data)
-            description = row.get("Description", item.get("testName", ""))
-            duration_str = row.get("Duration", item.get("duration", "0 min"))
+            # Extract full description & duration
+            description = row.get("Description", "")
+            duration_str = row.get("Duration", "Not Defined")
             duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
 
-            # Convert test type codes to full labels
+            # Convert test type short codes to full names
             raw_types = row.get("Test Types", "")
             test_types = [
                 test_type_map.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
@@ -113,7 +116,7 @@ if params.get("api", [""])[0] == "1":
                 "description": description,
                 "duration": duration,
                 "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
-                "test_type": test_types  # ✅ now returns full readable labels
+                "test_type": test_types  # ✅ proper full label list
             })
 
         # Final API response
@@ -125,7 +128,6 @@ if params.get("api", [""])[0] == "1":
 
         st.json(response)
         st.stop()
-        
     except Exception as e:
         st.json({
             "status": "error",
