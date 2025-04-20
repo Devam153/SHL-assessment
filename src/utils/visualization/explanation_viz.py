@@ -14,7 +14,7 @@ def add_search_method_explanation() -> None:
         with col1:
             st.markdown("### Semantic Search")
             st.markdown("""
-            - Uses neural embeddings to capture meaning
+            - Uses **neural embeddings** to capture meaning
             - Better at understanding context and synonyms
             - Can find assessments that are semantically related even when words don't match exactly
             - Powered by the Sentence Transformer model
@@ -23,7 +23,7 @@ def add_search_method_explanation() -> None:
         with col2:
             st.markdown("### TF-IDF Search")
             st.markdown("""
-            - Uses term frequency-inverse document frequency
+            - Uses **term frequency-inverse document frequency** technique
             - Good at matching specific keywords and technical terms
             - Works well when exact terminology is important
             - Based on statistical word occurrence patterns
@@ -32,8 +32,9 @@ def add_search_method_explanation() -> None:
         with col3:
             st.markdown("### Hybrid Search")
             st.markdown("""
-            - Combines both semantic and TF-IDF approaches
+            - Combines **both semantic and TF-IDF approaches**
             - Balances meaning-based and keyword-based matching
+            - Often provides the best overall performance
             - Default recommendation method in the system
             """)
             
