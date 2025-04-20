@@ -33,7 +33,7 @@ params = st.query_params
 def load_model():
     try:
         from src.utils.model_evaluation import ModelEvaluator
-        return ModelEvaluator("src/data/shl_full_catalog_with_duration&desc.csv")
+        return ModelEvaluator("src/data/shl_full_catalog_with_duration.csv")
     except Exception as e:
         st.error(f"Model initialization failed: {str(e)}")
         return None
@@ -160,7 +160,7 @@ st.markdown("""
 @st.cache_data(ttl=3600)  # cache for 1 hour
 def load_assessment_data():
     try:
-        df = pd.read_csv('src/data/shl_full_catalog_with_duration&desc.csv')
+        df = pd.read_csv('src/data/shl_full_catalog_with_duration.csv')
         return df
     except Exception as e:
         st.error(f"Error loading assessment data: {str(e)}")
@@ -221,7 +221,7 @@ def main():
         return
     
     # Initialize model
-    model = initialize_model('src/data/shl_full_catalog_with_duration&desc.csv')
+    model = initialize_model('src/data/shl_full_catalog_with_duration.csv')
     if model is None:
         st.error("Failed to initialize recommendation model. Please check the logs.")
         return
