@@ -65,7 +65,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
         st.warning("Test Types column not found in dataset. Cannot display test type distribution.")
         return
         
-    # Extract test types
     all_types = []
     
     for types_str in df[test_types_col]:
@@ -73,7 +72,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
             types = [t.strip() for t in types_str.split(',')]
             all_types.extend(types)
     
-    # Count occurrences
     if not all_types:
         st.warning("No test type data found in dataset.")
         return
@@ -81,10 +79,8 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     type_counts = pd.Series(all_types).value_counts().reset_index()
     type_counts.columns = ['Test Type', 'Count']
     
-    # Map short codes to full names
     type_counts['Full Name'] = type_counts['Test Type'].map(test_type_map)
     
-    # Create plot with full names
     fig = px.bar(
         type_counts, 
         x='Full Name', 
@@ -161,11 +157,9 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
     with col3:
         st.metric("Total Valid Samples", str(len(durations)))
         
-    # Display non-numeric durations in a more organized way
     if invalid_durations:
         st.markdown("### Non-numeric Durations")
         
-        # Count and display by category
         special_durations_count = Counter(special_values)
         special_durations_list = [f"{value} ({count})" for value, count in special_durations_count.most_common()]
         

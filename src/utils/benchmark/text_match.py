@@ -21,7 +21,7 @@ def clean_text_for_comparison(text: str) -> str:
     text = re.sub(r'\s*test\s*', ' ', text)
     text = re.sub(r'\s*challenge\s*', ' ', text)
     
-    text = re.sub(r'core\s+(\w+)', r'\1', text)  # "Core Java" -> "Java"
+    text = re.sub(r'core\s+(\w+)', r'\1', text) 
     
     text = text.replace('javascript', 'java script').replace('js', 'java script')
     text = text.replace('collab', 'collaborat') 
@@ -108,6 +108,5 @@ def is_substantial_match(text1: str, text2: str) -> bool:
                 logger.info(f"✓ Similar words found: '{word1}' ~ '{word2}'")
                 return True
     
-    # No substantial match found
-    logger.info(f"✗ No match between '{text1}' and '{text2}'")
+    logger.info(f"No match between '{text1}' and '{text2}'")
     return False
