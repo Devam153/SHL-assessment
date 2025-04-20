@@ -2,6 +2,10 @@
 
 Project Website: https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app
 
+API endpoint (query) - https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?api=1&query=java+developer+40+minutes&top_k=5
+
+API endpoint (health check) - https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?health=1
+
 ## Overview
 
 This document outlines our approach to building the SHL Assessment Recommendation System, which matches job descriptions or natural language queries with relevant SHL assessments. The system employs a hybrid search methodology combining semantic understanding and keyword matching.
