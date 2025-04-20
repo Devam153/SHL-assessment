@@ -1,6 +1,8 @@
 # SHL Assessment Recommender - Technical Approach
 
 Project Website: https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app
+API endpoint (query) - https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?api=1&query=java+developer+40+minutes&top_k=5
+API endpoint (health check) - https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?health=1
 
 ## Overview
 
