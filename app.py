@@ -33,7 +33,7 @@ params = st.query_params
 def load_model():
     try:
         from src.utils.model_evaluation import ModelEvaluator
-        return ModelEvaluator("src/data/shl_full_catalog_with_duration.csv")
+        return ModelEvaluator("src/data/shl_full_catalog_with_duration&desc.csv")
     except Exception as e:
         st.error(f"Model initialization failed: {str(e)}")
         return None
@@ -88,10 +88,10 @@ if params.get("api", [""])[0] == "1":
             recommendations.append({
                 "url": item["link"],
                 "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
-                "description": item["testName"],
+                "description": item["Description"],
                 "duration": duration,
                 "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
-                "test_type": test_types
+                "test_type": { str(i): t for i,t in enumerate(test_types) }
             })
 
         # Build final response with CORRECT FIELD NAME
