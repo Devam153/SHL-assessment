@@ -2,8 +2,6 @@
 """
 API utility functions for the recommendation system
 """
-import json
-import requests
 from typing import Dict, List, Any, Optional
 import time
 

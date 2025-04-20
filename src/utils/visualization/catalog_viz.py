@@ -15,10 +15,8 @@ def clean_duration(duration_str: str) -> int | None:
     if not isinstance(duration_str, str):
         return None
         
-    # Remove 'min' and whitespace
     duration = duration_str.lower().replace('min', '').strip()
     
-    # Handle ranges like "35-40" - take the average
     if '-' in duration:
         try:
             low, high = map(int, duration.split('-'))
@@ -26,7 +24,6 @@ def clean_duration(duration_str: str) -> int | None:
         except:
             return None
             
-    # Handle 'max' prefixed durations
     if 'max' in duration:
         try:
             # Extract the number after 'max'
@@ -36,7 +33,6 @@ def clean_duration(duration_str: str) -> int | None:
         except:
             pass
             
-    # Try to extract just numbers
     try:
         return int(re.findall(r'\d+', duration)[0])
     except:
@@ -46,7 +42,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     """
     Visualize the distribution of test types in the catalog
     """
-    # Determine which column name to use for test types
     test_types_col = None
     if 'Test Types' in df.columns:
         test_types_col = 'Test Types'
@@ -57,7 +52,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
         st.warning("Test Types column not found in dataset. Cannot display test type distribution.")
         return
         
-    # Extract test types
     all_types = []
     
     for types_str in df[test_types_col]:
@@ -65,7 +59,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
             types = [t.strip() for t in types_str.split(',')]
             all_types.extend(types)
     
-    # Count occurrences
     if not all_types:
         st.warning("No test type data found in dataset.")
         return
@@ -73,7 +66,6 @@ def plot_test_type_distribution(df: pd.DataFrame) -> None:
     type_counts = pd.Series(all_types).value_counts().reset_index()
     type_counts.columns = ['Test Type', 'Count']
     
-    # Create plot
     fig = px.bar(
         type_counts, 
         x='Test Type', 
@@ -97,7 +89,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         st.warning("Duration column not found in dataset")
         return
         
-    # Clean and convert durations
     durations = []
     invalid_durations = []
     special_values = {}
@@ -112,7 +103,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         if cleaned_duration is not None:
             durations.append(cleaned_duration)
         else:
-            # Collect special duration values for reporting
             special_value = str_duration.strip().lower()
             if special_value:
                 special_values[special_value] = special_values.get(special_value, 0) + 1
@@ -122,7 +112,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         st.warning("No valid duration data found in dataset")
         return
         
-    # Create histogram for duration distribution
     fig = px.histogram(
         x=durations,
         nbins=12,
@@ -137,7 +126,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
         bargap=0.2
     )
     
-    # Add mean and median lines
     mean_duration = sum(durations) / len(durations)
     median_duration = sorted(durations)[len(durations)//2]
     
@@ -148,7 +136,6 @@ def plot_duration_distribution(df: pd.DataFrame) -> None:
     
     st.plotly_chart(fig, use_container_width=True)
     
-    # Display statistics
     st.markdown("### Duration Statistics")
     col1, col2, col3 = st.columns(3)
     
@@ -174,7 +161,6 @@ def plot_remote_adaptive_support(df: pd.DataFrame) -> None:
     """
     Visualize remote testing and adaptive support distribution
     """
-    # Determine which column names to use
     remote_col = None
     adaptive_col = None
     

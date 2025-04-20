@@ -1,9 +1,7 @@
 
 import streamlit as st
 import pandas as pd
-import numpy as np
 import time
-from typing import Dict, List, Any, Optional
 from src.utils.model_evaluation import ModelEvaluator
 from src.utils.visualization import (
     plot_benchmark_comparison, 
@@ -17,7 +15,6 @@ from src.utils.visualization import (
 from src.utils.benchmark import get_sample_benchmark_queries, run_benchmark
 from src.utils.api_utils import format_api_response, health_check, validate_query_params
 
-# Set page configuration
 st.set_page_config(
     page_title="SHL Assessment Recommender",
     page_icon="📊",
@@ -31,10 +28,8 @@ def load_metadata():
 
 df_meta = load_metadata()
 
-# 1️⃣ grab raw query params via the new API
 params = st.query_params
 
-# Cache model initialization
 @st.cache_resource
 def load_model():
     try:
@@ -44,7 +39,6 @@ def load_model():
         st.error(f"Model initialization failed: {str(e)}")
         return None
 
-# 💡 Detect health check request first
 if params.get("health", [""])[0] == "1":
     model = load_model()
     response = {
@@ -54,7 +48,6 @@ if params.get("health", [""])[0] == "1":
     st.json(response)
     st.stop()
 
-# 2️⃣ detect API mode
 if params.get("api", [""])[0] == "1":
     model = load_model()
     
@@ -66,7 +59,6 @@ if params.get("api", [""])[0] == "1":
         })
         st.stop()
 
-    # Parse parameters
     query = params.get("query", [""])[0]
     top_k = int(params.get("top_k", ["5"])[0])
     method = params.get("method", ["tfidf"])[0]
@@ -74,10 +66,8 @@ if params.get("api", [""])[0] == "1":
     try:
         result = model.evaluate_query(query, top_k=top_k, method=method)
         
-        # Build JSON response with correct field names
         recommendations = []
 
-        # Test type code to label mapping
         test_type_map = {
             "K": "Knowledge & Skills",
             "B": "Behavioral",
@@ -92,19 +82,15 @@ if params.get("api", [""])[0] == "1":
         for item in result["results"][:top_k]:
             link = item.get("link", "")
             
-            # Look up metadata from full catalog
             meta = df_meta[df_meta["Link"] == link]
             if meta.empty:
-                continue  # skip if no match
-            
+                continue
             row = meta.iloc[0]
 
-            # Extract full description & duration
             description = row.get("Description", "")
-            duration_str = row.get("Duration", "Not Defined")
+            duration_str = row.get("Duration", "Not")
             duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
 
-            # Convert test type short codes to full names
             raw_types = row.get("Test Types", "")
             test_types = [
                 test_type_map.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
@@ -116,10 +102,9 @@ if params.get("api", [""])[0] == "1":
                 "description": description,
                 "duration": duration,
                 "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
-                "test_type": test_types  # ✅ proper full label list
+                "test_type": test_types 
             })
 
-        # Final API response
         response = {
             "status": "success",
             "recommended_assessments": recommendations,
@@ -136,9 +121,6 @@ if params.get("api", [""])[0] == "1":
         })
         st.stop()
 
-
-
-# Apply custom styling
 st.markdown("""
 <style>
     .main-header {
@@ -180,8 +162,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Cache data loading to improve performance
-@st.cache_data(ttl=3600)  # cache for 1 hour
+@st.cache_data(ttl=3600) 
 def load_assessment_data():
     try:
         df = pd.read_csv('src/data/shl_full_catalog_with_duration_desc.csv')
@@ -190,7 +171,6 @@ def load_assessment_data():
         st.error(f"Error loading assessment data: {str(e)}")
         return None
 
-# Cache model initialization
 @st.cache_resource
 def initialize_model(data_path: str):
     try:
@@ -200,7 +180,6 @@ def initialize_model(data_path: str):
         st.error(f"Error initializing model: {str(e)}")
         return None
 
-# Get recommendations 
 def get_recommendations(query: str, model: ModelEvaluator, method: str = 'hybrid', top_k: int = 5):
     try:
         start_time = time.time()
@@ -211,7 +190,6 @@ def get_recommendations(query: str, model: ModelEvaluator, method: str = 'hybrid
         st.error(f"Error getting recommendations: {str(e)}")
         return [], 0
 
-# Advanced query suggestions based on assessment data
 @st.cache_data
 def generate_query_suggestions(df):
     job_roles = ["Data Scientist", "Software Engineer", "Business Analyst", "Project Manager", 
@@ -219,7 +197,6 @@ def generate_query_suggestions(df):
     skills = ["programming", "leadership", "communication", "problem-solving", "technical", "analytical"]
     durations = ["under 30 minutes", "quick assessment", "comprehensive evaluation"]
     
-    # Generate combinations
     suggestions = []
     for role in job_roles:
         suggestions.append(f"{role} assessment")
@@ -232,34 +209,27 @@ def generate_query_suggestions(df):
     
     return suggestions
 
-# Main application
 def main():
-    # Header
     st.markdown('<div class="main-header">SHL Assessment Recommender</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-header">Powered by AI to find the perfect assessment for your hiring needs</div>', unsafe_allow_html=True)
     
-    # Load data
     df = load_assessment_data()
     if df is None:
         st.error("Failed to load assessment data. Please check the file path and try again.")
         return
     
-    # Initialize model
     model = initialize_model('src/data/shl_full_catalog_with_duration_desc.csv')
     if model is None:
         st.error("Failed to initialize recommendation model. Please check the logs.")
         return
     
-    # Create tabs
     tab1, tab2, tab3, tab4 = st.tabs(["Recommender", "Catalog Analysis", "Model Evaluation", "About"])
     
     with tab1:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         
-        # Input form
         st.subheader("What assessment are you looking for?")
         
-        # Query input with suggestions
         query_suggestions = generate_query_suggestions(df)
         query = st.selectbox(
             "Enter your search query or select a suggestion",
@@ -271,7 +241,6 @@ def main():
         col1, col2, col3 = st.columns([3, 1, 1])
         
         with col1:
-            # User can also type a custom query
             custom_query = st.text_input(
                 "Or type your own custom query:",
                 placeholder="e.g., Leadership assessment for mid-level managers with focus on decision making",
@@ -298,7 +267,6 @@ def main():
                 help="Choose the search algorithm to use"
             )
         
-        # Advanced filters (collapsible)
         with st.expander("Advanced Filters"):
             col1, col2 = st.columns(2)
             
@@ -310,7 +278,6 @@ def main():
                 adaptive_only = st.checkbox("Adaptive Testing Support", value=False,
                                           help="Only show assessments with adaptive/IRT capability")
                 
-            # Filter by test types
             st.write("Test Types (select at least one)")
             col1, col2, col3, col4 = st.columns(4)
             
@@ -333,14 +300,12 @@ def main():
                 type_n = st.checkbox("Numerical (N)", value=True)
                 type_e = st.checkbox("Emotional Intelligence (E)", value=True)
         
-        # Submit button
         submit_col1, submit_col2, submit_col3 = st.columns([1, 1, 1])
         with submit_col2:
             search_button = st.button("🔍 Find Assessments", type="primary", use_container_width=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
         
-        # Get recommendations when button is clicked
         if search_button and query:
             with st.spinner("Generating recommendations..."):
                 start_time = time.time()
@@ -348,10 +313,8 @@ def main():
                 end_time = time.time()
                 
                 if recommendations:
-                    # Deduplicate recommendations first
                     recommendations = deduplicate_recommendations(recommendations)
                     
-                    # Apply advanced filters if set
                     filtered_recommendations = recommendations
                     
                     if remote_only:
@@ -360,7 +323,6 @@ def main():
                     if adaptive_only:
                         filtered_recommendations = [r for r in filtered_recommendations if r["adaptiveIRTSupport"].lower() == "yes"]
                     
-                    # Filter by test types
                     selected_types = []
                     if type_a: selected_types.append("A")
                     if type_b: selected_types.append("B") 
@@ -380,7 +342,6 @@ def main():
                             if any(t in selected_types for t in r["testTypes"].replace(" ", "").split(","))
                         ]
                     
-                    # Display results using the visualization module
                     if filtered_recommendations:
                         st.success(f"Found {len(filtered_recommendations)} matching assessments in {proc_time:.2f} ms")
                         for recommendation in filtered_recommendations:
@@ -392,7 +353,6 @@ def main():
         elif search_button and not query:
             st.warning("Please enter a search query or select a suggestion.")
     
-    # Catalog Analysis tab
     with tab2:
         st.subheader("SHL Assessment Catalog Analysis")
         
@@ -406,15 +366,12 @@ def main():
         st.markdown("### Testing Support Analysis")
         plot_remote_adaptive_support(df)
     
-    # Model Evaluation tab
     with tab3:
         st.subheader("Model Evaluation")
         st.write("This section allows you to evaluate and compare different search methods using sample queries.")
         
-        # Add explanation about search methods
         add_search_method_explanation()
         
-        # Benchmark controls
         st.markdown("### Benchmark Configuration")
         
         col1, col2 = st.columns(2)
@@ -426,11 +383,9 @@ def main():
                                             ["mean_recall_at_k", "map_at_k", "avg_processing_time_ms"],
                                             ["mean_recall_at_k", "map_at_k", "avg_processing_time_ms"])
         
-        # Sample benchmark queries
         st.markdown("### Sample Benchmark Queries")
         benchmark_queries = get_sample_benchmark_queries()
         
-        # Display sample queries
         for i, query_item in enumerate(benchmark_queries):
             with st.expander(f"Query {i+1}: {query_item['query'][:60]}..."):
                 st.write(query_item['query'])
@@ -438,14 +393,11 @@ def main():
                 for item in query_item['relevant_items']:
                     st.write(f"- {item}")
         
-        # Run benchmark button
         if st.button("Run Benchmark"):
             with st.spinner("Running benchmark..."):
-                # Extract queries and ground truth
                 queries = [item['query'] for item in benchmark_queries]
                 ground_truth = {item['query']: item['relevant_items'] for item in benchmark_queries}
                 
-                # Run benchmark
                 benchmark_results = run_benchmark(
                     model, 
                     queries, 
@@ -454,16 +406,13 @@ def main():
                     top_k=benchmark_k
                 )
                 
-                # Display results
                 st.markdown("### Benchmark Results")
                 st.dataframe(benchmark_results)
                 
-                # Plot results
                 for metric in selected_metrics:
                     if metric in benchmark_results.columns:
                         plot_benchmark_comparison(benchmark_results, metric)
                 
-                # Add explanation of results
                 with st.expander("💡 Interpreting Benchmark Results"):
                     st.markdown("""
                     ### Understanding the Metrics
@@ -485,43 +434,74 @@ def main():
                     3. The dataset needs to be preprocessed differently
                     """)
     
-    # About tab
     with tab4:
         st.markdown("""
         ## About SHL Assessment Recommender
+                
+        ### Key Features
         
-        This tool uses artificial intelligence to help HR professionals and hiring managers find the most suitable SHL assessments for their candidate evaluation needs.
-        
-        ### Features
-        
-        - 🔍 **Advanced search methods** including semantic search, TF-IDF, and hybrid approaches
-        - 📊 **Comprehensive evaluation metrics** (Mean Recall@K, MAP@K)
-        - ⚡ **Fast, real-time recommendations** with efficient caching
-        - 📈 **Detailed analytics** on the assessment catalog
-        - 🌐 **REST API** for integration with other systems
-        
-        ### Technologies Used
-        
-        - **Sentence Transformers**: For generating semantic embeddings of text
-        - **Scikit-learn**: For TF-IDF vectorization and similarity calculations
-        - **Streamlit**: For creating the interactive web interface
-        - **Pandas & NumPy**: For data manipulation and analysis
-        - **Plotly**: For interactive data visualizations
-        
-        ### How It Works
-        
-        1. The system loads the SHL assessment catalog and pre-computes embeddings for each assessment
-        2. When you enter a query, both semantic and TF-IDF representations are generated
-        3. The system finds assessments with similar representations to your query
-        4. Results are combined, ranked by relevance, and returned
-        
-        ### API Documentation
-        
-        The system exposes a REST API for programmatic access. The main endpoints are:
-        
-        - `GET /api/recommendations?query=your_query&top_k=5`: Get assessment recommendations
-        - `GET /api/health`: Check API health status
+        - 🔍 **Hybrid Search Methodology** combining semantic and keyword-based approaches  
+        - 📊 **Advanced Recommendation Engine** with configurable search methods  
+        - ⚡ **Real-time Assessment Matching**  
+        - 📈 **Comprehensive Filtering Options**  
         """)
+
+        # ⬇️ Core Technologies in 3 columns
+        st.markdown("### Core Technologies")
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.markdown("""
+            - Python (Core language)  
+            - FastAPI (REST API framework)  
+            - Streamlit (Web app framework)  
+            """)
+
+        with col2:
+            st.markdown("""
+            - SentenceTransformer (Neural embeddings)  
+            - Scikit-learn (TF-IDF & ML utilities)  
+            - Pandas & NumPy (Data wrangling)  
+            """)
+
+        with col3:
+            st.markdown("""
+            - BeautifulSoup (Web scraping)  
+            - Plotly & Matplotlib (Visualization)  
+            """)
+
+        # Continue rest of the markdown
+        st.markdown("""
+        ### Recommendation Process
+        
+        1. Load pre-processed SHL assessment catalog  
+        2. Generate semantic and keyword representations  
+        3. Match queries using hybrid search techniques  
+        4. Rank and return most relevant assessments  
+
+        ### API Endpoints
+
+        1. **Assessment Recommendations**
+        ```
+        https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?api=1&query=java+developer+40+minutes&top_k=5
+        ```
+        - Main endpoint for getting assessment recommendations  
+        - Accepts job descriptions and skill-based queries  
+        - Configurable number of recommendations (`top_k` parameter)  
+        - Returns detailed assessment information as a JSON output  
+
+        2. **Health Status**
+        ```
+        https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?health=1
+        ```
+        - Monitors API availability and status  
+        - Returns real-time health information  
+        - Used for service monitoring  
+
+        ### Source Code
+        Access the complete project on GitHub: [SHL Recommender](https://github.com/Devam153/SHL-assessment)
+        """)
+
     
     # Footer
     st.markdown("""
