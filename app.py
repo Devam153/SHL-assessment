@@ -23,92 +23,95 @@ st.set_page_config(
 
 @st.cache_data(ttl=3600)
 def load_metadata():
-    return pd.read_csv("src/data/shl_full_catalog.csv")
+    return pd.read_csv("src/data/shl_full_catalog_with_duration_desc.csv")
 
 df_meta = load_metadata()
+
 params = st.query_params
 
-# Health check endpoint
+@st.cache_resource
+def load_model():
+    try:
+        from src.utils.model_evaluation import ModelEvaluator
+        return ModelEvaluator("src/data/shl_full_catalog_with_duration_desc.csv")
+    except Exception as e:
+        st.error(f"Model initialization failed: {str(e)}")
+        return None
+
 if params.get("health", [""])[0] == "1":
+    model = load_model()
     response = {
-        "status": "healthy",
-        "model_status": "ready"
+        "status": "healthy" if model is not None else "unhealthy",
+        "model_status": "ready" if model is not None else "failed"
     }
     st.json(response)
     st.stop()
 
-# API endpoint for recommendations
 if params.get("api", [""])[0] == "1":
-    query = params.get("query", [""])[0]
-    top_k = int(params.get("top_k", ["5"])[0])
+    model = load_model()
     
-    if not query:
+    if not model:
         st.json({
             "status": "error",
-            "message": "Query parameter is required",
+            "message": "Model failed to initialize",
             "recommended_assessments": []
         })
         st.stop()
-    
+
+    query = params.get("query", [""])[0]
+    top_k = int(params.get("top_k", ["5"])[0])
+    method = params.get("method", ["tfidf"])[0]
+
     try:
-        # Filter and process recommendations based on query
-        recommendations = []
+        result = model.evaluate_query(query, top_k=top_k, method=method)
         
-        # Map test types to full names
+        recommendations = []
+
         test_type_map = {
             "K": "Knowledge & Skills",
             "B": "Behavioral",
             "P": "Personality",
             "C": "Cognitive",
             "A": "Aptitude",
-            "S": "Situational",
-            "T": "Technical",
-            "N": "Numerical",
-            "L": "Leadership",
-            "D": "Decision Making",
-            "E": "Emotional Intelligence"
+            "S": "Simulation",
+            "E": "Emotional Intelligence",
+            "D": "Development"
         }
-        
-        # Process each assessment
-        for _, row in df_meta.iterrows():
-            # Extract test types and map them
-            test_types = [t.strip() for t in row['Test Types'].split(',') if t.strip()]
-            test_types_mapped = [test_type_map.get(t, t) for t in test_types]
+
+        for item in result["results"][:top_k]:
+            link = item.get("link", "")
             
-            # Create test type dictionary with numbered keys
-            test_type_dict = {str(i): t for i, t in enumerate(test_types_mapped)}
-            
-            # Extract duration as integer - FIX: Improved duration parsing
-            duration = 0
-            if pd.notna(row['Duration']):
-                duration_str = row['Duration']
-                # Handle ranges like "35-40 min" by taking the first number
-                import re
-                duration_match = re.search(r'\d+', duration_str)
-                if duration_match:
-                    duration = int(duration_match.group())
-            
+            meta = df_meta[df_meta["Link"] == link]
+            if meta.empty:
+                continue
+            row = meta.iloc[0]
+
+            description = row.get("Description", "")
+            duration_str = row.get("Duration", "Not")
+            duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
+
+            raw_types = row.get("Test Types", "")
+            test_types = [
+                test_type_map.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
+            ]
+
             recommendations.append({
-                "url": row['Link'],
-                "adaptive_support": "Yes" if str(row.get('Adaptive/IRT', '')).lower() == 'yes' else "No",
-                "description": row['Test Name'],
+                "url": link,
+                "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
+                "description": description,
                 "duration": duration,
-                "remote_support": "Yes" if str(row.get('Remote Testing', '')).lower() == 'yes' else "No",
-                "test_type": test_type_dict
+                "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
+                "test_type": test_types 
             })
-        
-        # Filter recommendations based on query and get top_k results
-        filtered_recommendations = recommendations[:top_k]
-        
+
         response = {
             "status": "success",
-            "recommended_assessments": filtered_recommendations,
-            "processing_time_ms": 0  # Simplified for demo
+            "recommended_assessments": recommendations,
+            "processing_time_ms": result["processing_time_ms"]
         }
-        
+
         st.json(response)
         st.stop()
-        
     except Exception as e:
         st.json({
             "status": "error",
