@@ -78,12 +78,15 @@ if params.get("api", [""])[0] == "1":
             # Create test type dictionary with numbered keys
             test_type_dict = {str(i): t for i, t in enumerate(test_types_mapped)}
             
-            # Extract duration as integer
-            duration_str = row['Duration'].split()[0] if pd.notna(row['Duration']) else "0"
-            try:
-                duration = int(duration_str.replace("-", "")) if duration_str.replace("-", "").isdigit() else 0
-            except (ValueError, TypeError):
-                duration = 0
+            # Extract duration as integer - FIX: Improved duration parsing
+            duration = 0
+            if pd.notna(row['Duration']):
+                duration_str = row['Duration']
+                # Handle ranges like "35-40 min" by taking the first number
+                import re
+                duration_match = re.search(r'\d+', duration_str)
+                if duration_match:
+                    duration = int(duration_match.group())
             
             recommendations.append({
                 "url": row['Link'],
