@@ -92,7 +92,8 @@ async def health_check():
                 "model_status": "failed"
             }
         )
-
+    
+@app.get("/recommend")
 @app.post("/recommend")
 async def get_recommendations(
     query: str = Query(..., description="Job description or natural language query"),
