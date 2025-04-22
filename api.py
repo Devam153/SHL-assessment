@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import time
 import logging
 import os
+from typing import List, Dict, Any, Optional
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -27,6 +28,21 @@ app.add_middleware(
 # Global variables
 model = None
 model_initializing = False
+
+# Test type mapping
+TEST_TYPE_MAP = {
+    "K": "Knowledge & Skills",
+    "B": "Behavioral",
+    "P": "Personality", 
+    "C": "Cognitive",
+    "A": "Aptitude",
+    "S": "Situational",
+    "T": "Technical",
+    "N": "Numerical",
+    "L": "Leadership",
+    "D": "Decision Making",
+    "E": "Emotional Intelligence"
+}
 
 # Initialize model in background
 def initialize_model():
@@ -105,25 +121,39 @@ async def get_recommendations(
         # Format recommendations according to specification
         recommendations = []
         for item in result['results']:
+            # Parse test types into individual types
             test_types = [t.strip() for t in item['testTypes'].split(',') if t.strip()]
+            
+            # Map letter codes to full names
+            test_types_mapped = [TEST_TYPE_MAP.get(t, t) for t in test_types]
+            
+            # Create dictionary with ordered keys
+            test_type_dict = {str(idx): test_type for idx, test_type in enumerate(test_types_mapped)}
+            
             # Extract numeric duration value
-            duration_str = item['duration'].split()[0]  # Get first part (number)
-            duration = int(duration_str) if duration_str.isdigit() else 0
+            duration_str = item['duration'].split()[0] if 'duration' in item and item['duration'] else "0"
+            try:
+                duration = int(duration_str) if duration_str.isdigit() else 0
+            except (ValueError, TypeError):
+                duration = 0
+            
+            # Get description or default to test name if not available
+            description = item.get('description', item['testName'])
             
             recommendations.append({
                 "url": item['link'],
                 "adaptive_support": "Yes" if item['adaptiveIRTSupport'].lower() == 'yes' else "No",
-                "description": item['testName'],
+                "description": description,
                 "duration": duration,
                 "remote_support": "Yes" if item['remoteTestingSupport'].lower() == 'yes' else "No",
-                "test_type": test_types
+                "test_type": test_type_dict
             })
         
         return JSONResponse(
             status_code=200,
             content={
                 "status": "success",
-                "recommendations": recommendations,
+                "recommended_assessments": recommendations,
                 "processing_time_ms": processing_time
             }
         )
@@ -135,7 +165,7 @@ async def get_recommendations(
             content={
                 "status": "error",
                 "message": str(e),
-                "recommendations": []
+                "recommended_assessments": []
             }
         )
 

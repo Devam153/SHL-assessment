@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: shl-recommender-api
+    env: docker
+    region: singapore
+    plan: standard
+    buildCommand: docker build -t shl-recommender-api .
+    startCommand: docker run -p $PORT:8000 shl-recommender-api
+    healthCheckPath: /health
+    healthCheckTimeout: 180
+    envVars:
+      - key: MODEL_CACHE_DIR
+        value: /var/cache/model
+    disk:
+      name: model-cache
+      mountPath: /var/cache/model
+      sizeGB: 1
