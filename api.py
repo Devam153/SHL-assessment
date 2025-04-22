@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Query, HTTPException, Request
+from fastapi import FastAPI, Query, HTTPException, Request, Response
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 import time
 import logging
 import os
+import json
 from typing import List, Dict, Any, Optional
 
 # Configure logging
@@ -92,24 +93,25 @@ async def health_check():
                 "model_status": "failed"
             }
         )
-    
+
+# Modified to accept both GET and POST requests
 @app.get("/recommend")
 @app.post("/recommend")
 async def get_recommendations(
     query: str = Query(..., description="Job description or natural language query"),
-    top_k: int = Query(10, description="Number of recommendations to return", ge=1, le=10)
+    top_k: int = Query(10, description="Number of recommendations to return", ge=1, le=10),
+    format: str = Query("json", description="Response format: json or html")
 ):
     """Get assessment recommendations in the specified format"""
     global model
-    
+
     if model is None and model_initializing:
-        return JSONResponse(
-            status_code=202,
-            content={
-                "status": "initializing",
-                "message": "Model is still initializing, please try again in a few seconds"
-            }
-        )
+        response_obj = {
+            "status": "initializing",
+            "message": "Model is still initializing, please try again in a few seconds"
+        }
+        pretty_json = json.dumps(response_obj, indent=2, ensure_ascii=False)
+        return Response(content=pretty_json, media_type="application/json", status_code=202)
     
     if model is None:
         raise HTTPException(status_code=503, detail="Model not initialized")
@@ -117,60 +119,47 @@ async def get_recommendations(
     try:
         start_time = time.time()
         result = model.evaluate_query(query, top_k=top_k, method='hybrid')
-        processing_time = (time.time() - start_time) * 1000  # Convert to milliseconds
+        processing_time_ms = (time.time() - start_time) * 1000  # Convert to milliseconds
         
-        # Format recommendations according to specification
         recommendations = []
         for item in result['results']:
-            # Parse test types into individual types
-            test_types = [t.strip() for t in item['testTypes'].split(',') if t.strip()]
-            
-            # Map letter codes to full names
-            test_types_mapped = [TEST_TYPE_MAP.get(t, t) for t in test_types]
-            
-            # Create dictionary with ordered keys
-            test_type_dict = {str(idx): test_type for idx, test_type in enumerate(test_types_mapped)}
-            
-            # Extract numeric duration value
-            duration_str = item['duration'].split()[0] if 'duration' in item and item['duration'] else "0"
-            try:
-                duration = int(duration_str) if duration_str.isdigit() else 0
-            except (ValueError, TypeError):
-                duration = 0
-            
-            # Get description or default to test name if not available
+            test_types_raw = [t.strip() for t in item['testTypes'].split(',') if t.strip()]
+            test_types_mapped = [TEST_TYPE_MAP.get(t, t) for t in test_types_raw]
+            duration_str = item.get('duration', '')
+            duration_val = 0
+            if duration_str:
+                duration_part = duration_str.split()[0]
+                if duration_part.isdigit():
+                    duration_val = int(duration_part)
             description = item.get('description', item['testName'])
-            
             recommendations.append({
                 "url": item['link'],
                 "adaptive_support": "Yes" if item['adaptiveIRTSupport'].lower() == 'yes' else "No",
                 "description": description,
-                "duration": duration,
+                "duration": duration_val,
                 "remote_support": "Yes" if item['remoteTestingSupport'].lower() == 'yes' else "No",
-                "test_type": test_type_dict
+                "test_type": test_types_mapped
             })
         
-        return JSONResponse(
-            status_code=200,
-            content={
-                "status": "success",
-                "recommended_assessments": recommendations,
-                "processing_time_ms": processing_time
-            }
-        )
+        response_obj = {
+            "status": "success",
+            "recommended_assessments": recommendations,
+            "processing_time_ms": processing_time_ms
+        }
+
+        pretty_json = json.dumps(response_obj, indent=2, ensure_ascii=False)
+        return Response(content=pretty_json, media_type="application/json", status_code=200)
         
     except Exception as e:
         logger.error(f"Error processing request: {str(e)}")
-        return JSONResponse(
-            status_code=500,
-            content={
-                "status": "error",
-                "message": str(e),
-                "recommended_assessments": []
-            }
-        )
+        response_obj = {
+            "status": "error",
+            "message": str(e),
+            "recommended_assessments": []
+        }
+        pretty_json = json.dumps(response_obj, indent=2, ensure_ascii=False)
+        return Response(content=pretty_json, media_type="application/json", status_code=500)
 
-# Start model initialization when the app starts
 @app.on_event("startup")
 async def startup_event():
     import threading
