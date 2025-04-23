@@ -21,105 +21,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-@st.cache_data(ttl=3600)
-def load_metadata():
-    return pd.read_csv("src/data/shl_full_catalog_with_duration_desc.csv")
-
-df_meta = load_metadata()
-
-params = st.query_params
-
-@st.cache_resource
-def load_model():
-    try:
-        from src.utils.model_evaluation import ModelEvaluator
-        return ModelEvaluator("src/data/shl_full_catalog_with_duration_desc.csv")
-    except Exception as e:
-        st.error(f"Model initialization failed: {str(e)}")
-        return None
-
-if params.get("health", [""])[0] == "1":
-    model = load_model()
-    response = {
-        "status": "healthy" if model is not None else "unhealthy",
-        "model_status": "ready" if model is not None else "failed"
-    }
-    st.json(response)
-    st.stop()
-
-if params.get("api", [""])[0] == "1":
-    model = load_model()
-    
-    if not model:
-        st.json({
-            "status": "error",
-            "message": "Model failed to initialize",
-            "recommended_assessments": []
-        })
-        st.stop()
-
-    query = params.get("query", [""])[0]
-    top_k = int(params.get("top_k", ["5"])[0])
-    method = params.get("method", ["tfidf"])[0]
-
-    try:
-        result = model.evaluate_query(query, top_k=top_k, method=method)
-        
-        recommendations = []
-
-        test_type_map = {
-            "K": "Knowledge & Skills",
-            "B": "Behavioral",
-            "P": "Personality",
-            "C": "Cognitive",
-            "A": "Aptitude",
-            "S": "Simulation",
-            "E": "Emotional Intelligence",
-            "D": "Development"
-        }
-
-        for item in result["results"][:top_k]:
-            link = item.get("link", "")
-            
-            meta = df_meta[df_meta["Link"] == link]
-            if meta.empty:
-                continue
-            row = meta.iloc[0]
-
-            description = row.get("Description", "")
-            duration_str = row.get("Duration", "Not")
-            duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
-
-            raw_types = row.get("Test Types", "")
-            test_types = [
-                test_type_map.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
-            ]
-
-            recommendations.append({
-                "url": link,
-                "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
-                "description": description,
-                "duration": duration,
-                "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
-                "test_type": test_types 
-            })
-
-        response = {
-            "status": "success",
-            "recommended_assessments": recommendations,
-            "processing_time_ms": result["processing_time_ms"]
-        }
-
-        st.json(response)
-        st.stop()
-    except Exception as e:
-        st.json({
-            "status": "error",
-            "message": str(e),
-            "recommended_assessments": []
-        })
-        st.stop()
-
 st.markdown("""
 <style>
     .main-header {
@@ -470,31 +371,59 @@ def main():
 
         st.markdown("""
         ### Recommendation Process
-        
+                    
         1. Load pre-processed SHL assessment catalog  
         2. Generate semantic and keyword representations  
         3. Match queries using hybrid search techniques  
         4. Rank and return most relevant assessments  
+        """)
 
-        ### API Endpoints
+        st.markdown("### API Endpoints")
 
-        1. **Assessment Recommendations**
-        ```
-        https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?api=1&query=java+developer+40+minutes&top_k=5
-        ```
-        - Main endpoint for getting assessment recommendations  
-        - Accepts job descriptions and skill-based queries  
-        - Configurable number of recommendations (`top_k` parameter)  
-        - Returns detailed assessment information as a JSON output  
+        col1, col2 = st.columns(2)
 
-        2. **Health Status**
-        ```
-        https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?health=1
-        ```
-        - Monitors API availability and status  
-        - Returns real-time health information  
-        - Used for service monitoring  
+        with col1:
+            st.markdown("#### GET Request")
+            st.code("""
+        https://shl-assessment-zlp2.onrender.com/recommend?query=java+developer+40+minutes&top_k=5
 
+        # Using PowerShell
+        Invoke-RestMethod -Uri "https://shl-assessment-zlp2.onrender.com/recommend?query=java developer 40 minutes&top_k=5" -Method Get | ConvertTo-Json -Depth 10 -Compress:$false
+
+        """, language="powershell")
+
+        with col2:
+            st.markdown("#### POST Request")
+            st.code("""
+        # Using curl
+        curl -X POST "https://shl-assessment-zlp2.onrender.com/recommend" \\
+            -H "Content-Type: application/json" \\
+            -d '{"query": "python developer", "top_k": 5}'
+
+        # Using PowerShell
+        $body = @{
+            query = "python developer"
+            top_k = 5
+        } | ConvertTo-Json
+
+        Invoke-RestMethod -Uri "https://shl-assessment-zlp2.onrender.com/recommend" \\
+                        -Method Post \\
+                        -ContentType "application/json" \\
+                        -Body $body
+        """, language="powershell")
+
+        st.markdown("### Query Parameters")
+        st.markdown("""
+        - `query`: Your job description or search query (required)
+        - `top_k`: Number of recommendations (optional, default=10, range: 1-10)
+        """)
+
+        st.markdown("### Health Check Endpoint")
+        st.code("""
+        https://shl-assessment-zlp2.onrender.com/health
+                """)
+
+        st.markdown("""
         ### Source Code
         Access the complete project on GitHub: [SHL Recommender](https://github.com/Devam153/SHL-assessment)
         """)
