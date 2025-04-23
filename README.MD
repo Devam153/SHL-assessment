@@ -1,4 +1,4 @@
-# SHL Assessment Recommender - Technical Approach
+# SHL Assessment Recommender 
 
 Project Website: https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app
 
