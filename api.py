@@ -29,11 +29,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global variables
 model = None
 model_initializing = False
 
-# Test type mapping
 TEST_TYPE_MAP = {
     "K": "Knowledge & Skills",
     "B": "Behavioral",
@@ -48,7 +46,6 @@ TEST_TYPE_MAP = {
     "E": "Emotional Intelligence"
 }
 
-# Initialize model in background
 def initialize_model():
     global model, model_initializing
     try:
@@ -56,10 +53,8 @@ def initialize_model():
         logger.info("Starting model initialization")
         model_initializing = True
         
-        # Create cache directory if it doesn't exist
         os.makedirs('cache', exist_ok=True)
         
-        # Initialize model with cache directory
         model = ModelEvaluator('src/data/shl_full_catalog_with_duration_desc.csv', cache_dir='cache')
         logger.info("Model initialization completed successfully")
     except Exception as e:
@@ -93,11 +88,10 @@ async def health_check():
             status_code=503,
             content={
                 "status": "unhealthy",
-                "model_status": "failed"
+                "model_status": "Model is initializing, please wait a few minutes. This is because on Render's free tier, services are spun down after 15 minutes of inactivity. When someone accesses the API after this period, the entire service needs to restart - which means the model gets reloaded from scratch. I cannot cache due to limited storage given on the free tier."
             }
         )
 
-# Modified to properly handle both GET and POST requests
 @app.get("/recommend")
 async def get_recommendations(
     query: str = Query(..., description="Job description or natural language query"),
@@ -116,7 +110,7 @@ async def post_recommendations(
     try:
         body = await request.json()
         query = body.get("query")
-        top_k = min(max(body.get("top_k", 10), 1), 10)  # Ensure top_k is between 1 and 10
+        top_k = min(max(body.get("top_k", 10), 1), 10)  
         
         if not query:
             raise HTTPException(status_code=400, detail="Query is required in request body")
@@ -139,7 +133,7 @@ async def process_recommendation(query: str, top_k: int, format: str):
         return Response(content=pretty_json, media_type="application/json", status_code=202)
     
     if model is None:
-        raise HTTPException(status_code=503, detail="Model not initialized")
+        raise HTTPException(status_code=503, detail="Model not initialized. Please wait a few minutes. This is because on Render's free tier, services are spun down after 15 minutes of inactivity. When someone accesses the API after this period, the entire service needs to restart - which means the model gets reloaded from scratch. I cannot cache due to limited storage given on the free tier.")
     
     try:
         start_time = time.time()
@@ -157,7 +151,6 @@ async def process_recommendation(query: str, top_k: int, format: str):
 
             description = row.get("Description", "")
             
-            # Fix for duration handling - safely extract duration number
             duration = 0
             duration_str = row.get("Duration", "")
             if isinstance(duration_str, str) and duration_str:
@@ -166,7 +159,6 @@ async def process_recommendation(query: str, top_k: int, format: str):
                 if duration_match:
                     duration = int(duration_match.group())
 
-            # Handle test types
             raw_types = row.get("Test Types", "")
             test_types = []
             if isinstance(raw_types, str):
