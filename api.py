@@ -135,13 +135,23 @@ async def get_recommendations(
             row = meta.iloc[0]
 
             description = row.get("Description", "")
-            duration_str = row.get("Duration", "Not")
-            duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
+            
+            # Fix for duration handling - safely extract duration number
+            duration = 0
+            duration_str = row.get("Duration", "")
+            if isinstance(duration_str, str) and duration_str:
+                import re
+                duration_match = re.search(r'\d+', duration_str)
+                if duration_match:
+                    duration = int(duration_match.group())
 
+            # Handle test types
             raw_types = row.get("Test Types", "")
-            test_types = [
-                TEST_TYPE_MAP.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
-            ]
+            test_types = []
+            if isinstance(raw_types, str):
+                test_types = [
+                    TEST_TYPE_MAP.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
+                ]
 
             recommendations.append({
                 "url": link,
