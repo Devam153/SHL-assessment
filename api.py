@@ -60,7 +60,7 @@ def initialize_model():
         os.makedirs('cache', exist_ok=True)
         
         # Initialize model with cache directory
-        model = ModelEvaluator('src/data/shl_full_catalog.csv', cache_dir='cache')
+        model = ModelEvaluator('src/data/shl_full_catalog_with_duration_desc.csv', cache_dir='cache')
         logger.info("Model initialization completed successfully")
     except Exception as e:
         logger.error(f"Error initializing model: {str(e)}")
