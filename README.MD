@@ -2,9 +2,13 @@
 
 Project Website: https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app
 
-API endpoint (query) - https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?api=1&query=java+developer+40+minutes&top_k=5
+API endpoint (query) - https://shl-assessment-zlp2.onrender.com/recommend?query=java+developer+40+minutes&top_k=5 (GET Request)
 
-API endpoint (health check) - https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app/?health=1
+curl -X POST "https://shl-assessment-zlp2.onrender.com/recommend" \
+ -H "Content-Type: application/json" \
+ -d '{"query": "python developer", "top_k": 5}' (POST Request)
+
+API endpoint (health check) - https://shl-assessment-zlp2.onrender.com/health
 
 ## Overview
 
@@ -15,7 +19,7 @@ This document outlines our approach to building the SHL Assessment Recommendatio
 The solution consists of two main components:
 
 - A **Streamlit web application** for interactive exploration and visualization
-- A **FastAPI REST API** for programmatic access and integration
+- A **FastAPI REST API** for programmatic access and integration which is deployed separately on render
 
 ## Data Processing
 
@@ -83,8 +87,8 @@ The API provides two primary endpoints:
 
 1. `/health` - Service health check returning HTTP 200 when healthy
 2. `/recommend` - Main recommendation endpoint accepting:
-   - `query`: Job description or natural language query
-   - `top_k`: Number of recommendations to return (1-10)
+   - `query`: Job description or natural language query (required)
+   - `top_k`: Number of recommendations to return (1-10) (optional)
 
 Response format includes recommended assessments with:
 
@@ -120,16 +124,12 @@ Response format includes recommended assessments with:
 - **Pandas & NumPy** - Data processing
 - **BeautifulSoup** - Web scraping for dataset enrichment
 - **Plotly & Matplotlib** - Data visualization
-- **Render** - Cloud deployment platform
+- **Render** - API deployment platform
 
 ## Deployment
 
-The application is deployed on Render as two separate services:
-
-1. Web application (Streamlit)
-2. API service (FastAPI)
-
-This architecture allows for independent scaling and maintenance while providing both interactive exploration and programmatic access.
+The application is deployed on Streamlit Community Cloud
+The API is deployed on Render
 
 ## Conclusion
 
