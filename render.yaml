@@ -3,9 +3,9 @@ services:
     name: shl-recommender-api
     env: docker
     region: singapore
-    plan: standard
+    plan: free
     buildCommand: docker build -t shl-recommender-api .
-    startCommand: docker run -p $PORT:8000 shl-recommender-api
+    startCommand: gunicorn api:app -k uvicorn.workers.UvicornWorker --preload --workers 2 --bind 0.0.0.0:$PORT
     healthCheckPath: /health
     healthCheckTimeout: 180
     envVars:
@@ -14,4 +14,4 @@ services:
     disk:
       name: model-cache
       mountPath: /var/cache/model
-      sizeGB: 1
+      sizeGB: 0.5
