@@ -5,9 +5,8 @@ import time
 import logging
 import os
 import json
-from typing import List, Dict, Any, Optional
+import pandas as pd
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -17,7 +16,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Add CORS middleware to allow requests from anywhere (since we're in Streamlit)
+def load_metadata():
+    return pd.read_csv("src/data/shl_full_catalog_with_duration_desc.csv")
+
+df_meta = load_metadata()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -122,23 +125,31 @@ async def get_recommendations(
         processing_time_ms = (time.time() - start_time) * 1000  # Convert to milliseconds
         
         recommendations = []
-        for item in result['results']:
-            test_types_raw = [t.strip() for t in item['testTypes'].split(',') if t.strip()]
-            test_types_mapped = [TEST_TYPE_MAP.get(t, t) for t in test_types_raw]
-            duration_str = item.get('duration', '')
-            duration_val = 0
-            if duration_str:
-                duration_part = duration_str.split()[0]
-                if duration_part.isdigit():
-                    duration_val = int(duration_part)
-            description = item.get('description', item['testName'])
+        for item in result["results"][:top_k]:
+
+            link = item.get("link", "")
+                        
+            meta = df_meta[df_meta["Link"] == link]
+            if meta.empty:
+                continue
+            row = meta.iloc[0]
+
+            description = row.get("Description", "")
+            duration_str = row.get("Duration", "Not")
+            duration = int(duration_str.split()[0]) if duration_str.split()[0].isdigit() else 0
+
+            raw_types = row.get("Test Types", "")
+            test_types = [
+                TEST_TYPE_MAP.get(t.strip(), t.strip()) for t in raw_types.split(",") if t.strip()
+            ]
+
             recommendations.append({
-                "url": item['link'],
-                "adaptive_support": "Yes" if item['adaptiveIRTSupport'].lower() == 'yes' else "No",
+                "url": link,
+                "adaptive_support": "Yes" if item.get("adaptiveIRTSupport", "").lower() == "yes" else "No",
                 "description": description,
-                "duration": duration_val,
-                "remote_support": "Yes" if item['remoteTestingSupport'].lower() == 'yes' else "No",
-                "test_type": test_types_mapped
+                "duration": duration,
+                "remote_support": "Yes" if item.get("remoteTestingSupport", "").lower() == "yes" else "No",
+                "test_type": test_types 
             })
         
         response_obj = {
