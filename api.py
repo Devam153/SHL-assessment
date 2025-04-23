@@ -97,15 +97,37 @@ async def health_check():
             }
         )
 
-# Modified to accept both GET and POST requests
+# Modified to properly handle both GET and POST requests
 @app.get("/recommend")
-@app.post("/recommend")
 async def get_recommendations(
     query: str = Query(..., description="Job description or natural language query"),
     top_k: int = Query(10, description="Number of recommendations to return", ge=1, le=10),
     format: str = Query("json", description="Response format: json or html")
 ):
-    """Get assessment recommendations in the specified format"""
+    """Get assessment recommendations via GET with query params"""
+    return await process_recommendation(query, top_k, format)
+
+@app.post("/recommend")
+async def post_recommendations(
+    request: Request,
+    format: str = Query("json", description="Response format: json or html")
+):
+    """Get assessment recommendations via POST with JSON body"""
+    try:
+        body = await request.json()
+        query = body.get("query")
+        top_k = min(max(body.get("top_k", 10), 1), 10)  # Ensure top_k is between 1 and 10
+        
+        if not query:
+            raise HTTPException(status_code=400, detail="Query is required in request body")
+            
+        return await process_recommendation(query, top_k, format)
+        
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+
+async def process_recommendation(query: str, top_k: int, format: str):
+    """Common processing logic for both GET and POST requests"""
     global model
 
     if model is None and model_initializing:
@@ -122,11 +144,10 @@ async def get_recommendations(
     try:
         start_time = time.time()
         result = model.evaluate_query(query, top_k=top_k, method='hybrid')
-        processing_time_ms = (time.time() - start_time) * 1000  # Convert to milliseconds
+        processing_time_ms = (time.time() - start_time) * 1000
         
         recommendations = []
         for item in result["results"][:top_k]:
-
             link = item.get("link", "")
                         
             meta = df_meta[df_meta["Link"] == link]
