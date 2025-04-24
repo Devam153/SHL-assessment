@@ -111,7 +111,6 @@ def generate_query_suggestions(df):
 
 def main():
     st.markdown('<div class="main-header">SHL Assessment Recommender</div>', unsafe_allow_html=True)
-    st.markdown('<div class="sub-header">Powered by AI to find the perfect assessment for your hiring needs</div>', unsafe_allow_html=True)
     
     df = load_assessment_data()
     if df is None:
