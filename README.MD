@@ -2,11 +2,8 @@
 
 Project Website: https://shl-assessment-9vuzh8xdu2vvchdhvcnxtq.streamlit.app
 
-API endpoint (query) - https://shl-assessment-zlp2.onrender.com/recommend?query=java+developer+40+minutes&top_k=5 (GET Request)
+API endpoint (query) - https://shl-assessment-zlp2.onrender.com/recommend?query=java+developer+40+minutes&top_k=5
 
-curl -X POST "https://shl-assessment-zlp2.onrender.com/recommend" \
- -H "Content-Type: application/json" \
- -d '{"query": "python developer", "top_k": 5}' (POST Request)
 
 API endpoint (health check) - https://shl-assessment-zlp2.onrender.com/health
 
