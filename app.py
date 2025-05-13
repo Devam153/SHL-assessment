@@ -12,7 +12,6 @@ from src.utils.visualization import (
     deduplicate_recommendations
 )
 from src.utils.benchmark import get_sample_benchmark_queries, run_benchmark
-from src.utils.api_utils import format_api_response, health_check, validate_query_params
 
 st.set_page_config(
     page_title="SHL Assessment Recommender",
