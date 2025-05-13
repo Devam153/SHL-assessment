@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query, HTTPException, Request, Response
-from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import time
 import logging

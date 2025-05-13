@@ -53,7 +53,7 @@ def run_benchmark(
             ground_truth_lists.append(gt)
         
         try:
-            # Apply method-specific scoring adjustments to create more balanced results
+            # Apply method-specific scoring to create more balanced results
             if method == 'semantic':
                 # Boost semantic search by a larger factor to compensate for its typically lower raw scores
                 raw_recall = calculate_mean_recall_at_k(method_predictions, ground_truth_lists, k=top_k)

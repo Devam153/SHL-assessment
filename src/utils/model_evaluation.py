@@ -22,17 +22,14 @@ class ModelEvaluator:
         self.model_name = model_name
         self.cache_dir = Path(cache_dir) if cache_dir else None
         
-        # Load and preprocess data
         self._load_data()
         
-        # Initialize models
         try:
             logger.info(f"Initializing transformer model: {model_name}")
             self.transformer = SentenceTransformer(model_name)
             logger.info(f"Initializing TF-IDF vectorizer")
             self.tfidf = TfidfVectorizer(stop_words='english')
             
-            # Compute embeddings
             self._compute_embeddings()
         except Exception as e:
             logger.error(f"Error initializing models: {str(e)}")
@@ -45,7 +42,6 @@ class ModelEvaluator:
             self.df = pd.read_csv(self.data_path)
             logger.info(f"Loaded {len(self.df)} assessments")
             
-            # Map original column names to internal names to handle different formats
             column_mapping = {
                 'Test Name': 'testName',
                 'Link': 'link',
@@ -60,23 +56,13 @@ class ModelEvaluator:
                 if orig in self.df.columns:
                     self.df = self.df.rename(columns={orig: new})
             
-            # Validate required columns after renaming
-            required_cols = ['testName', 'link', 'remoteTestingSupport', 'adaptiveIRTSupport']
-            for col in required_cols:
-                if col not in self.df.columns:
-                    logger.error(f"Required column '{col}' not found in dataset after renaming.")
-                    raise ValueError(f"Required column '{col}' not found in dataset.")
-            
-            # Add default fields if missing
-            if 'testTypes' not in self.df.columns:
-                logger.warning("Test Types column is missing. Adding default value.")
-                self.df['testTypes'] = "Not specified"
+            # print(column.mapping)
+    
                 
             if 'duration' not in self.df.columns:
                 logger.warning("Duration column is missing. Adding default value.")
                 self.df['duration'] = "Not specified"
             
-            # Create combined description field for better matching
             self.df['combined_description'] = (
                 self.df['testName'] + ' ' + 
                 self.df['testTypes'] + ' ' + 
@@ -110,11 +96,9 @@ class ModelEvaluator:
                 
                 if cache_file:
                     logger.info(f"Caching embeddings to {cache_file}")
-                    # Ensure directory exists
-                    cache_file.parent.mkdir(parents=True, exist_ok=True)
+                    cache_file.parent.mkdir(parents=True, exist_ok=True) # ensure directory exists
                     np.save(cache_file, self.embeddings)
             
-            # Compute TF-IDF matrix
             logger.info("Computing TF-IDF matrix")
             self.tfidf_matrix = self.tfidf.fit_transform(self.df['combined_description'])
             logger.info(f"TF-IDF matrix shape: {self.tfidf_matrix.shape}")
@@ -207,7 +191,7 @@ class ModelEvaluator:
                 results = self._semantic_search(query, top_k)
             elif method == 'tfidf':
                 results = self._tfidf_search(query, top_k)
-            else:  # hybrid
+            else:  
                 results = self._hybrid_search(query, top_k, alpha)
                 
             processing_time = (time.time() - start_time) * 1000
