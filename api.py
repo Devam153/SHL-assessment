@@ -53,9 +53,9 @@ def initialize_model():
         logger.info("Starting model initialization")
         model_initializing = True
         
-        os.makedirs('cache', exist_ok=True)
+        os.makedirs('/var/cache/model', exist_ok=True)
         
-        model = ModelEvaluator('src/data/shl_full_catalog_with_duration_desc.csv', cache_dir='cache')
+        model = ModelEvaluator('src/data/shl_full_catalog_with_duration_desc.csv', cache_dir='/var/cache/model')
         logger.info("Model initialization completed successfully")
     except Exception as e:
         logger.error(f"Error initializing model: {str(e)}")
@@ -200,3 +200,7 @@ async def startup_event():
     thread = threading.Thread(target=initialize_model)
     thread.daemon = True
     thread.start()
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
